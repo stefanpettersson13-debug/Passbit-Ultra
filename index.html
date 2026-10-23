@@ -918,6 +918,7 @@ function showHome(){
  window.scrollTo({top:0,behavior:'smooth'});
 }
 function setTab(id){
+ const projectPane=document.getElementById('pb-project-workspace');if(projectPane)projectPane.hidden=true;
  window.passbitCurrentTool=id;
  document.body.classList.remove('home-view');
  if(id!=='stock')window.fromSettingsGauge=false;
@@ -1331,11 +1332,7 @@ function initPreferences(){
  $('settingsClose').addEventListener('click',()=>$('settingsPanel').classList.add('hidden'));
  $('languageSelect').addEventListener('change',e=>{currentLanguage=e.target.value;try{localStorage.setItem('passbit_language',currentLanguage)}catch(e){}refresh()});
  $('themeSelect').addEventListener('change',e=>{const theme=e.target.value;document.body.classList.toggle('light',theme==='light');try{localStorage.setItem('passbit_theme',theme)}catch(e){}});
- const observer=new MutationObserver(mutations=>{if(busy)return;busy=true;
-  for(const m of mutations){if(m.type==='characterData')translateNode(m.target);else for(const n of m.addedNodes)walk(n)}
-  busy=false;
- });
- observer.observe(document.body,{subtree:true,childList:true,characterData:true});
+ // Performance: language is refreshed explicitly, not on every DOM text mutation.
  refresh();
 }
 
@@ -1358,7 +1355,7 @@ $('previewPro').addEventListener('click',()=>setPreviewEdition('pro'));
 $('previewUltra')?.addEventListener('click',()=>setPreviewEdition('ultra'));
 $('previewUnlock').addEventListener('click',()=>setPreviewEdition(window.passbitToolTier(window.passbitCurrentTool||'fits')==='ultra'?'ultra':'pro'));
 
-setPreviewEdition('pro');
+setPreviewEdition('ultra');
 initNewTools();
 initPreferences();
 </script><script>
@@ -1394,8 +1391,7 @@ initPreferences();
   });
  }
  select.addEventListener('change',()=>{unit=select.value;try{localStorage.setItem('passbit_display_unit',unit)}catch(e){}refreshUnits()});
- const observer=new MutationObserver(()=>refreshUnits());
- observer.observe(document.body,{childList:true,subtree:true});
+ // Performance: units refresh when the user changes display units.
  refreshUnits();
 })();
 </script><script>
@@ -1469,7 +1465,7 @@ initPreferences();
  }
  const target=document.getElementById('mpStats');if(!target)return;
  function decorate(){for(const metric of target.querySelectorAll('.metric')){const small=metric.querySelector('small');if(!small||metric.querySelector('.spc-info'))continue;const label=small.textContent.trim();const key=Object.keys(info).find(k=>label===k||label.startsWith(k+' ·'));if(!key)continue;const b=document.createElement('button');b.type='button';b.className='spc-info';b.dataset.spcInfo=key;b.setAttribute('aria-label','Information om '+key);b.title='Vad betyder '+key+'?';b.textContent='i';small.insertAdjacentElement('afterend',b);}}
- const observer=new MutationObserver(decorate);observer.observe(target,{childList:true,subtree:true});decorate();
+ decorate(); // no subtree-wide observer
 })();
 </script>
 <script>
@@ -1883,8 +1879,7 @@ function open(key){const group=groups[key];if(!group)return;current=key;tools.hi
 root.querySelectorAll('[data-category]').forEach(b=>b.addEventListener('click',()=>open(b.dataset.category)));
 document.getElementById('pb-category-back').addEventListener('click',reset);
 // Home button is managed by existing application; restore category overview on next home visit.
-const observer=new MutationObserver(()=>{if(document.body.classList.contains('home-view')&&!grid.hidden&&current)reset()});
-observer.observe(document.body,{attributes:true,attributeFilter:['class']});
+// Home reset is handled by the existing Home button.
 // Also reset when the existing Home control is explicitly pressed.
 document.getElementById('homeButton')?.addEventListener('click',()=>{if(!document.body.classList.contains('home-view'))return;reset()});
 })();</script><script>
