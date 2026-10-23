@@ -16,6 +16,18 @@ assert.equal(new Set(scripts).size,scripts.length,'Duplicate script load');
 assert.equal(new Set(styles).size,styles.length,'Duplicate stylesheet');
 for(const file of scripts)execFileSync(process.execPath,['--check',join(root,file)],{stdio:'pipe'});
 const nav=readFileSync(join(root,'assets/js/navigation.js'),'utf8');
+const bot=readFileSync(join(root,'assets/js/my-assistant.js'),'utf8');
+assert.match(html,/id="my-toggle"/,'My launch button');
+assert.match(html,/id="my-panel"/,'My assistant panel');
+assert.match(html,/id="my-form"/,'My assistant input');
+assert.match(bot,/passbitMy=/,'My assistant API');
+const groupMatch=nav.match(/const taxonomy=([\s\S]*?);\nconst root=/);
+assert.ok(groupMatch,'Category taxonomy must exist');
+const groupIds=[...groupMatch[1].matchAll(/'([a-z][a-z0-9]*)'/g)].map(x=>x[1]);
+const allTools=[...html.matchAll(/class="dashbtn" data-go="([^"]+)"/g)].map(x=>x[1]);
+for(const id of allTools.filter(x=>x!=='field'))assert.ok(groupIds.includes(id),'Tool missing from categories: '+id);
+for(const id of groupIds)assert.equal(groupIds.filter(x=>x===id).length,1,'Duplicate category tool '+id);
+
 const expected=['hydcyl','hydpump','hydpipe','hydacc','pneucyl','servicevib','elec3','mechbearing','mechgear','mechbolt','belt','metrotemp','metrounc','grindwheel','hydraulics','cylinders','fittings'];
 for(const id of expected){
  assert.match(html,new RegExp('id="'+id+'"'),'Missing section '+id);
