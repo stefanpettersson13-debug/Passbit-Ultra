@@ -1,0 +1,1 @@
+document.getElementById('pb65grindSpeed')?.addEventListener('click',()=>{document.querySelector('[data-tab=grinding]')?.click();});
