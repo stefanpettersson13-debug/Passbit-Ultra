@@ -1,0 +1,1 @@
+document.querySelector('#metrology .panel > h2 .spc-info')?.remove();
