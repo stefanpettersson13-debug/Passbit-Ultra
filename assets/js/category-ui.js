@@ -1,0 +1,22 @@
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+const configs={
+'32':{name:'3/2 · normalt stängd',states:[['Vila (fjäderläge)','2 → 3 (A avluftas); 1 (P) spärrad.'],['Aktiverad','1 → 2 (P till A); 3 (R) spärrad.']]},
+'52':{name:'5/2 · dubbelverkande',states:[['Läge 1','1 → 2 (P till A), 4 → 5 (B till S).'],['Läge 2','1 → 4 (P till B), 2 → 3 (A till R).']]},
+'53':{name:'5/3 · stängt mittläge',states:[['Vänster','1 → 2 (P till A), 4 → 5 (B till S).'],['Mittläge','Samtliga huvudportar blockerade (stängt mittläge).'],['Höger','1 → 4 (P till B), 2 → 3 (A till R).']]},
+'22':{name:'2/2 · av/på',states:[['Vila · stängd','1 och 2 spärrade.'],['Aktiverad · öppen','1 → 2 (P till A).']]}
+};
+const portMap={'1':[90,155],'2':[90,28],'3':[210,155],'4':[210,28],'5':[300,155]};
+function renderValve(){const v=configs[$('pneu-valve').value],index=Number($('pneu-state').value)||0,desc=v.states[index][1];$('pneu-explain').textContent=v.name+' · '+v.states[index][0]+': '+desc;
+const ports=Object.keys(portMap).filter(p=>v.name.startsWith('2/2')?['1','2'].includes(p):v.name.startsWith('3/2')?['1','2','3'].includes(p):true);
+const labels=ports.map(p=>{const [x,y]=portMap[p];return `<text x="${x}" y="${y}" text-anchor="middle" font-size="13" fill="#b6f4d8">${p}</text>`}).join('');
+const count=v.states.length;const boxes=v.states.map((s,i)=>`<rect x="${25+i*(290/count)}" y="57" width="${290/count}" height="75" rx="2" fill="${i===index?'#1d514d':'#112e34'}" stroke="${i===index?'#b4f5d6':'#688d86'}" stroke-width="${i===index?2.5:1.5}"/><text x="${25+(i+.5)*(290/count)}" y="85" text-anchor="middle" fill="#d1f7e3" font-size="11">${i===index?'● VALT':'○'}</text><text x="${25+(i+.5)*(290/count)}" y="105" text-anchor="middle" fill="#d1f7e3" font-size="10">${i===0?'Vila':i===1&&count===3?'Mitt':'Läge '+(i+1)}</text>`).join('');
+$('pneu-diagram').innerHTML=`<svg viewBox="0 0 340 186" role="img" aria-label="Schematisk ventil med ${count} lägen, markerat ${v.states[index][0]}"><rect width="340" height="186" rx="8" fill="#0b2228"/>${boxes}${labels}<text x="170" y="176" text-anchor="middle" font-size="10" fill="#8eb7aa">Förenklad lägesillustration · flödesvägar anges i text</text></svg>`;
+}
+$('pneu-valve').addEventListener('change',()=>{const v=configs[$('pneu-valve').value];$('pneu-state').replaceChildren();v.states.forEach((s,i)=>{const o=document.createElement('option');o.value=String(i);o.textContent=s[0];$('pneu-state').append(o)});renderValve()});$('pneu-state').addEventListener('change',renderValve);$('pneu-valve').dispatchEvent(new Event('change'));
+const symptoms={nomove:['Bekräfta luftmatning och visat tryck enligt maskinens rutin.','Kontrollera elektrisk styrsignal och ventilens status utan att forcera rörelse.','Kontrollera förreglingar, mekaniskt stopp och om cylindern får korrekt avluftning.'],slow:['Jämför tryck och flödesförutsättningar med normal drift.','Kontrollera strypbackventilernas inställning och om avluftning är blockerad.','Kontrollera mekanisk friktion, last och eventuella läckor.'],leak:['Lokalisera läckan med godkänd läckdetektering utan att lossa anslutningar.','Kontrollera slang, koppling, tätning och cylinder enligt komponentens instruktion.','Isolera och tryckavlasta innan reparation.'],coil:['Verifiera spänningstyp och elektrisk styrsignal enligt godkänd mätprocedur.','Kontrollera ventilens indikering, kontaktdon och eventuella förreglingar.','Byt eller demontera inte ventil under tryck.'],pressure:['Kontrollera matningstryck, regulator och tryckfall vid belastning.','Kontrollera filter, läckor och samtidig luftförbrukning.','Jämför mot maskinens specificerade arbetstryck.']};
+$('pneu-check').addEventListener('click',()=>{const host=$('pneu-steps');host.replaceChildren();for(const s of symptoms[$('pneu-symptom').value]){const li=document.createElement('li');li.textContent=s;host.append(li)}});
+document.querySelectorAll('[data-draw-answer]').forEach(b=>b.addEventListener('click',()=>{$('draw-feedback').textContent=b.dataset.drawAnswer==='a'?'Rätt! 25,00 − 0,05 = 24,95 och 25,00 + 0,05 = 25,05 mm.':'Inte riktigt. Beräkna både övre och undre gränsmått från nominellt mått ± tolerans.'}));
+document.querySelectorAll('[data-elec-answer]').forEach(b=>b.addEventListener('click',()=>{$('elec-feedback').textContent=b.dataset.elecAnswer==='a'?'Rätt! NO är öppen i opåverkat tillstånd.':'Inte riktigt. NO/NC beskriver kontaktens normalläge, inte maskinens driftläge.'}));
+})();
