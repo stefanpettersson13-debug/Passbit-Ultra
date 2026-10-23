@@ -1,0 +1,8 @@
+/* PassBit 5.1 – compact grouped category navigation */
+.pb51-submenu{display:flex!important;flex-wrap:nowrap!important;gap:7px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin;padding-bottom:7px}
+.pb51-submenu button{flex:0 0 auto;white-space:nowrap;min-height:38px}
+.pb51-group-heading{font-size:13px!important;letter-spacing:.03em;color:#8baebf;margin:21px 0 9px;font-weight:750}
+.pb51-tool-group{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.pb51-tool-group .pb-category-tool{width:100%;margin:0!important;min-height:66px}
+.pb51-tool-group .pb-category-tool-name{line-height:1.35}
+@media(max-width:560px){.pb51-tool-group{grid-template-columns:1fr}.pb51-group-heading{margin-top:16px}}
