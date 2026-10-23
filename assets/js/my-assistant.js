@@ -27,9 +27,9 @@ const q=norm(raw);if(!q)return;
 bubble(raw,'user');
 if(/^(hej|hejsan|tjena|hall[aå]|vem ar du)/.test(q)){bubble('Hej! Jag är My 🌸 Din lilla verkstadskompis. Jag hjälper dig att hitta verktyg, förstå teknik och komma igång med beräkningar. Vad jobbar du med?');return}
 if(/(vad kan du|hjalp|funktioner)/.test(q)){bubble('Jag kan guida dig till rätt blad, förklara hydraulik, mätteknik och maskinteknik samt visa formler och begrepp. Jag arbetar lokalt i appen och har ingen uppkopplad AI-chatt ännu.');action('Visa hydraulik',()=>{const t=tools.find(x=>x.id==='hydraulics');if(t)openTool(t)});return}
-const barValue=q.match(/(\\d+(?:[.,]\\d+)?)\\s*bar\\b/),flowValue=q.match(/(\\d+(?:[.,]\\d+)?)\\s*(?:l\\s*\\/\\s*min|liter\\s*(?:per|\\/)\\s*minut)/);
+const barValue=q.match(/(\d+(?:[.,]\d+)?)\s*bar\b/),flowValue=q.match(/(\d+(?:[.,]\d+)?)\s*(?:l\s*\/\s*min|liter\s*(?:per|\/)\s*minut)/);
 if(barValue&&flowValue){const p=Number(barValue[1].replace(',','.')),f=Number(flowValue[1].replace(',','.'));bubble('Med '+p.toLocaleString('sv-SE')+' bar och '+f.toLocaleString('sv-SE')+' l/min blir den teoretiska hydrauliska effekten '+(p*f/600).toLocaleString('sv-SE',{maximumFractionDigits:3})+' kW. Formeln är p × Q / 600. Pumpens verkliga axeleffekt blir högre på grund av förluster.');const t=tools.find(x=>x.id==='hydpump');if(t)action('↗ Öppna Hydraulpump',()=>openTool(t));return}
-const sin=q.match(/(\\d+(?:[.,]\\d+)?)\\s*(?:mm)?\\s*(?:sinuslinjal|sinuslinjalen).*?(\\d+(?:[.,]\\d+)?)\\s*(?:grader|grad|°)/);
+const sin=q.match(/(\d+(?:[.,]\d+)?)\s*(?:mm)?\s*(?:sinuslinjal|sinuslinjalen).*?(\d+(?:[.,]\d+)?)\s*(?:grader|grad|°)/);
 if(sin){const length=Number(sin[1].replace(',','.')),degrees=Number(sin[2].replace(',','.'));bubble('Passbitshöjd = '+(length*Math.sin(degrees*Math.PI/180)).toLocaleString('sv-SE',{maximumFractionDigits:4})+' mm för '+length+' mm sinuslinjal vid '+degrees+'°.');return}
 if(/(rakna|berakna|hur mycket|hur manga)/.test(q)&&q.includes('bar')&&q.includes('l min')){bubble('Hydraulisk effekt: P (kW) = p (bar) × Q (l/min) / 600. Öppna Hydraulpump eller Hydraulik för att ange dina värden.')}
 else{const found=answers.find(a=>a.terms.some(t=>q.includes(norm(t))));if(found)bubble(found.text)}
