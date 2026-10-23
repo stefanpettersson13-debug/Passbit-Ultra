@@ -1,3 +1,22 @@
+/* Integrate hydraulics with the existing fixed-list legacy navigation. */
+if(typeof toolNames!=='undefined')toolNames.hydraulics='Hydraulik · Parker';
+if(typeof setTab==='function'){
+ const originalSetTab=setTab;
+ setTab=function(id){
+  originalSetTab(id);
+  const section=document.getElementById('hydraulics');
+  if(section)section.classList.toggle('hidden',id!=='hydraulics'||!window.passbitCanUse(id));
+ };
+}
+if(typeof showHome==='function'){
+ const originalShowHome=showHome;
+ showHome=function(){
+  originalShowHome();
+  document.getElementById('hydraulics')?.classList.add('hidden');
+ };
+}
+const originalTier=window.passbitToolTier;
+window.passbitToolTier=function(id){return id==='hydraulics'?'ultra':originalTier(id)};
 (()=>{'use strict';
 const root=document.getElementById('hydraulics');if(!root)return;
 const $=id=>document.getElementById(id);
