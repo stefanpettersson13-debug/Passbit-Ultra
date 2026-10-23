@@ -1,0 +1,35 @@
+
+/* Hydraulik · Parker-orienterad teknikguide */
+#hydraulics .hyd-tabs{display:flex;gap:8px;overflow-x:auto;margin:16px 0 20px;padding-bottom:5px}
+#hydraulics .hyd-tabs button{white-space:nowrap;border:1px solid #496478;background:#142d40;color:#c8deeb;border-radius:13px;padding:12px 15px;font-weight:700}
+#hydraulics .hyd-tabs button.active{background:linear-gradient(145deg,#a8bdca,#49677c);color:#081723;border-color:#d3e5ee}
+#hydraulics .hyd-page[hidden]{display:none!important}
+#hydraulics .hyd-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+#hydraulics .hyd-grid label{display:flex;flex-direction:column;gap:6px;font-size:12px;color:#a9c5d4}
+#hydraulics .hyd-grid input,#hydraulics .hyd-grid select,#hydraulics .hyd-searchbox input,#hydraulics .hyd-searchbox select{width:100%;min-width:0;background:#0b2131;border:1px solid #526f81;color:#e8f4fa;border-radius:11px;padding:12px;font-size:16px}
+#hydraulics .hyd-searchbox{display:grid;grid-template-columns:1fr auto;gap:9px;margin:13px 0}
+#hydraulics .hyd-searchbox select{max-width:145px}
+#hydraulics .hyd-presets{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0 15px}
+#hydraulics .hyd-presets button{border-radius:22px;background:#213e52;border:1px solid #53758a;color:#e2eef4;padding:8px 12px}
+#hydraulics .hyd-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:12px 0}
+#hydraulics .hyd-item{display:flex;align-items:center;gap:9px;text-align:left;border:1px solid #39586c;background:linear-gradient(145deg,#1c374a,#102536);border-radius:14px;padding:8px;color:#e6f0f5;min-width:0}
+#hydraulics .hyd-item span:nth-child(2){flex:1;min-width:0}
+#hydraulics .hyd-item strong{display:block;font-size:13px}
+#hydraulics .hyd-item small{display:block;font-size:11px;color:#9db8c8;line-height:1.35;margin-top:4px}
+#hydraulics .hyd-thumb{width:84px;flex-shrink:0}
+#hydraulics svg{display:block;width:100%;height:auto}
+#hydraulics .hyd-detail,#hydraulics .hyd-panel{background:linear-gradient(160deg,#173347,#0b1f2e);border:1px solid #39586b;border-radius:18px;padding:16px;margin:14px 0}
+#hydraulics .hyd-hero{max-width:410px;margin:auto}
+#hydraulics .hyd-kicker{color:#9bc4d8;font-size:10px;letter-spacing:1.2px;margin:10px 0}
+#hydraulics .hyd-note,#hydraulics .hyd-warn{background:#283d47;border-left:3px solid #e4ba70;padding:11px;border-radius:6px;font-size:13px}
+#hydraulics .hyd-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:12px 0}
+#hydraulics .hyd-metrics>div{background:#0b2334;border:1px solid #35556a;border-radius:12px;padding:12px}
+#hydraulics .hyd-metrics small{display:block;color:#a8c2d1;font-size:11px}
+#hydraulics .hyd-metrics strong{display:block;font-size:19px;color:#edf6fa;margin-top:5px}
+#hydraulics .hyd-dial{max-width:255px;margin:10px auto}
+#hydraulics .hyd-pipe{max-width:520px;margin:12px auto}
+#hydraulics .hyd-guide{display:grid;gap:12px}
+#hydraulics .hyd-guide article{background:#142e41;border:1px solid #34566b;border-radius:13px;padding:14px}
+#hydraulics .hyd-guide h3{margin:0 0 8px}
+#hydraulics .hyd-guide p{margin:5px 0}
+@media(max-width:580px){#hydraulics .hyd-list{grid-template-columns:1fr}#hydraulics .hyd-grid{grid-template-columns:1fr 1fr}#hydraulics .hyd-thumb{width:78px}#hydraulics .hyd-tabs button{padding:11px 12px;font-size:12px}}
