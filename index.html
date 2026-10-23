@@ -2315,7 +2315,7 @@ if(gear)gear.addEventListener('click',()=>animate(false));
 document.addEventListener('click',e=>{if(e.target.closest('[data-category],.pb-category-tool')){animate(false);setTimeout(setBackLabel,20)}},true);
 let start=null;
 document.addEventListener('touchstart',e=>{const t=e.touches[0];if(!t||e.touches.length!==1||t.clientX>35||e.target.closest('input,select,textarea'))return;start={x:t.clientX,y:t.clientY}},{passive:true});
-document.addEventListener('touchend',e=>{if(!start)return;const t=e.changedTouches[0],dx=t.clientX-start.x,dy=t.clientY-start.y;start=null;if(dx>95&&Math.abs(dy)<dx*.55){goBack()}},{passive:true});
+document.addEventListener('touchend',e=>{if(!start)return;const t=e.changedTouches[0],dx=t.clientX-start.x,dy=t.clientY-start.y;start=null;if(dx>95&&Math.abs(dy)<dx*.55){e.stopImmediatePropagation();goBack()}},{passive:true,capture:true});
 document.addEventListener('touchcancel',()=>start=null,{passive:true});
 if(home)setBackLabel();
 })();
