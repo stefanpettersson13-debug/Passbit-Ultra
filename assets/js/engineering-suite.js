@@ -52,4 +52,6 @@ function mount(id,def){
 }
 for(const [id,def] of Object.entries(calc))mount(id,def);
 window.passbit5Modules=names;
+// Read-only calculation definitions exposed for automated regression tests.
+window.passbit5Calculators=Object.freeze(calc);
 })();
