@@ -807,8 +807,11 @@ body.pb-blade-back #pb-category-root,body.pb-blade-back main>section:not(.hidden
 
 /* 3.1.0 segmented blade layout */
 .pb-blade-tabs{display:flex;gap:5px;max-width:100%;width:max-content;overflow-x:auto;padding:5px;margin:12px 0 20px;background:linear-gradient(#26323e,#151c25);border:1px solid #536575;border-radius:15px;scrollbar-width:none}.pb-blade-tabs button{flex:none;min-height:43px;padding:10px 18px;border:1px solid transparent;border-radius:11px;background:transparent;color:#bac8d6;font-weight:700;font-size:13px;white-space:nowrap}.pb-blade-tabs button.active{background:linear-gradient(#607284,#344353);border-color:#8396a7;color:#fff;box-shadow:inset 0 1px #fff5,0 4px 12px #0006}.pb-category-tool[hidden]{display:none!important}.pb-category-tools{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:13px!important}.pb-category-tool-name{min-width:0;overflow-wrap:anywhere}.pb-category-tool{min-width:0!important}.pb-blade-motion #pb-category-detail,.pb-blade-motion main>section:not(.hidden){animation:pb-blade-in .34s cubic-bezier(.2,.8,.2,1) both}@media(max-width:650px){.pb-blade-tabs{width:100%}.pb-blade-tabs button{padding:10px 14px}.pb-category-tools{grid-template-columns:1fr!important}}@media(prefers-reduced-motion:reduce){.pb-blade-motion #pb-category-detail,.pb-blade-motion main>section:not(.hidden){animation:none!important}}
+
+/* 3.1.1: allow native-feeling horizontal swipe without hijacking vertical scrolling */
+body{overscroll-behavior-x:none}body.pb-blade-motion #pb-category-detail{will-change:transform,opacity}
 </style></head><body class="home-view"><main>
-<header><div class="eyebrow">PRECISION ENGINEERING</div><h1><span class="brand">Pass<span class="brand-accent">Bit</span> Pro</span></h1><p>by Stefan Pettersson</p><div class="pb-build-version" aria-label="Appversion">VERSION 3.1.0 <span>· 23 OKT 2026</span></div><button aria-label="Inställningar" class="settings-gear" id="settingsGear" title="Inställningar" type="button"><svg aria-hidden="true" class="pb-icon" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="24"><path d="M10.4 2h3.2l.6 2.3a8 8 0 0 1 1.8.8l2.1-1.1 2.2 2.2-1.1 2.1a8 8 0 0 1 .8 1.8l2.3.6v3.2l-2.3.6a8 8 0 0 1-.8 1.8l1.1 2.1-2.2 2.2-2.1-1.1a8 8 0 0 1-1.8.8l-.6 2.3h-3.2l-.6-2.3a8 8 0 0 1-1.8-.8l-2.1 1.1-2.2-2.2 1.1-2.1a8 8 0 0 1-.8-1.8L2 13.6v-3.2l2.3-.6a8 8 0 0 1 .8-1.8L4 5.9l2.2-2.2 2.1 1.1a8 8 0 0 1 1.8-.8z"></path><circle cx="12" cy="12" r="3"></circle></svg></button></header>
+<header><div class="eyebrow">PRECISION ENGINEERING</div><h1><span class="brand">Pass<span class="brand-accent">Bit</span> Pro</span></h1><p>by Stefan Pettersson</p><div class="pb-build-version" aria-label="Appversion">VERSION 3.1.1 <span>· 23 OKT 2026</span></div><button aria-label="Inställningar" class="settings-gear" id="settingsGear" title="Inställningar" type="button"><svg aria-hidden="true" class="pb-icon" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="24"><path d="M10.4 2h3.2l.6 2.3a8 8 0 0 1 1.8.8l2.1-1.1 2.2 2.2-1.1 2.1a8 8 0 0 1 .8 1.8l2.3.6v3.2l-2.3.6a8 8 0 0 1-.8 1.8l1.1 2.1-2.2 2.2-2.1-1.1a8 8 0 0 1-1.8.8l-.6 2.3h-3.2l-.6-2.3a8 8 0 0 1-1.8-.8l-2.1 1.1-2.2-2.2 1.1-2.1a8 8 0 0 1-.8-1.8L2 13.6v-3.2l2.3-.6a8 8 0 0 1 .8-1.8L4 5.9l2.2-2.2 2.1 1.1a8 8 0 0 1 1.8-.8z"></path><circle cx="12" cy="12" r="3"></circle></svg></button></header>
 <section aria-label="Inställningar" class="hidden" id="settingsPanel">
 <div class="panel settings-panel"><div class="settings-head"><h2 data-i18n="settings">Inställningar</h2><button aria-label="Stäng" class="settings-close" id="settingsClose" type="button"><svg aria-hidden="true" class="pb-icon" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="24"><path d="M5 5l14 14M19 5 5 19"></path></svg></button></div>
 <label data-i18n="language" for="languageSelect">Språk</label><select id="languageSelect"><option value="sv">Svenska</option><option value="en">English</option></select>
@@ -2291,8 +2294,24 @@ home?.addEventListener('click',e=>{if(internal)return;if(view()==='tool'){e.stop
 gear?.addEventListener('click',()=>{if(!body.classList.contains('pb-settings-view')){body.classList.add('pb-settings-view');panel?.classList.remove('hidden')}else{body.classList.remove('pb-settings-view');panel?.classList.add('hidden')}motion()});
 close?.addEventListener('click',()=>{body.classList.remove('pb-settings-view');panel?.classList.add('hidden');motion()});
 document.addEventListener('click',e=>{if(e.target.closest('[data-category],.pb-category-tool'))requestAnimationFrame(motion)});
-document.addEventListener('touchstart',e=>{const t=e.touches[0];if(!t||e.touches.length!==1||t.clientX>38||e.target.closest('input,textarea,select'))return;touch={x:t.clientX,y:t.clientY}},{passive:true});
-document.addEventListener('touchend',e=>{if(!touch)return;const t=e.changedTouches[0],dx=t.clientX-touch.x,dy=t.clientY-touch.y;touch=null;if(dx>90&&Math.abs(dy)<dx*.55)back()},{passive:true});
-document.addEventListener('touchcancel',()=>touch=null,{passive:true});
+document.addEventListener('touchstart',e=>{
+ if(e.touches.length!==1||view()==='home')return;
+ const t=e.touches[0];
+ if(t.clientX>85||e.target.closest('input,textarea,select,[contenteditable="true"],[role="slider"]'))return;
+ touch={x:t.clientX,y:t.clientY,active:false};
+},{passive:true,capture:true});
+document.addEventListener('touchmove',e=>{
+ if(!touch||e.touches.length!==1)return;
+ const t=e.touches[0],dx=t.clientX-touch.x,dy=t.clientY-touch.y;
+ if(dx>18&&Math.abs(dx)>Math.abs(dy)*1.4)touch.active=true;
+ if(touch.active&&e.cancelable)e.preventDefault();
+},{passive:false,capture:true});
+document.addEventListener('touchend',e=>{
+ if(!touch)return;
+ const t=e.changedTouches[0],dx=t.clientX-touch.x,dy=t.clientY-touch.y,valid=touch.active&&dx>75&&Math.abs(dy)<dx*.65;
+ touch=null;
+ if(valid){e.stopImmediatePropagation();back()}
+},{passive:true,capture:true});
+document.addEventListener('touchcancel',()=>touch=null,{passive:true,capture:true});
 })();
 </script></body></html>
