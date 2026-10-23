@@ -767,8 +767,45 @@ body.pb-settings-view #settingsPanel .settings-panel{background:#171a20!importan
 @media(max-width:800px){.pb-grind-fields,.pb-grind-results{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 @media(max-width:620px){body{padding-left:16px!important;padding-right:16px!important}header{margin-bottom:22px!important}#pb-category-grid,#pb-category-detail .pb-category-tools{grid-template-columns:minmax(0,1fr)!important;gap:10px!important}#pb-category-grid>.pb-category-card{min-height:104px!important;padding:18px!important;grid-template-columns:46px minmax(0,1fr) 22px!important;column-gap:12px!important}#pb-category-grid>.pb-category-card .pb-category-icon{width:45px!important;height:45px!important}#pb-category-grid>.pb-category-card strong{font-size:17px!important}.pb-category-tool{min-height:68px!important;padding:15px!important}.pb-grind-fields,.pb-grind-results{grid-template-columns:minmax(0,1fr)!important}.panel{padding:20px!important;border-radius:18px!important}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* TITANIUM UI 3.0 — machined-metal surfaces, precision spacing */
+:root{--metal-0:#090c11;--metal-1:#141a22;--metal-2:#202934;--metal-line:#46515f;--metal-shine:#dbe5ef}
+body{background:radial-gradient(ellipse 1100px 500px at 55% -240px,#44525e 0%,#151b24 46%,#080b10 100%) fixed!important;color:#edf1f5!important}
+header{position:relative!important;padding:38px 0 30px!important;margin-bottom:28px!important}
+header::after{content:"";position:absolute;bottom:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#b8c5d6 40%,#536475 72%,transparent)}
+header .eyebrow{color:#b5c4d3!important}
+header h1 .brand{background:linear-gradient(170deg,#fff 5%,#e3eaf2 38%,#8998a8 75%,#fff 100%);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+header h1 .brand-accent{background:linear-gradient(150deg,#f7fffe,#9dd7d2 50%,#597d8e);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.pb-build-version{background:linear-gradient(180deg,#343e4b,#171d25)!important;border:1px solid #576371!important;color:#dbe3eb!important;box-shadow:inset 0 1px #ffffff2b,0 4px 15px #0004!important}
+.settings-gear{background:linear-gradient(150deg,#3b4653,#151c25)!important;border:1px solid #65717d!important;box-shadow:inset 0 1px #ffffff30,0 8px 20px #0004!important}
+#pb-category-root{max-width:100%!important}
+#pb-category-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:18px!important}
+#pb-category-grid>.pb-category-card{min-height:176px!important;padding:29px!important;border-radius:22px!important;background:linear-gradient(145deg,#354351 0%,#1c2631 32%,#101720 75%,#242f3a 100%)!important;border:1px solid #667583!important;box-shadow:inset 0 1px #ffffff55,inset 0 -1px #0008,0 16px 36px #0007!important;transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s,border-color .28s,background .28s!important}
+#pb-category-grid>.pb-category-card:hover{transform:translateY(-5px)!important;border-color:#c1cdd9!important;box-shadow:inset 0 1px #ffffff80,0 23px 48px #0009,0 0 0 1px #b4d7e31c!important}
+#pb-category-grid>.pb-category-card .pb-category-icon{background:linear-gradient(150deg,#5b6b79,#222f3a)!important;border:1px solid #788794!important;color:#f5f9fd!important;box-shadow:inset 0 1px #ffffff55,0 4px 12px #0005!important}
+#pb-category-grid>.pb-category-card strong{font-size:clamp(20px,2.3vw,25px)!important;color:#f4f7fa!important}
+#pb-category-grid>.pb-category-card .pb-tier{color:#b8cbd5!important}
+#pb-category-grid>.pb-category-card .pb-category-arrow{color:#d2dce6!important}
+#pb-category-grid>.pb-category-card:nth-child(5){background:linear-gradient(130deg,#39454f,#202a36 40%,#151e27)!important}
+.pb-category-detail{animation:pb-blade-in .38s cubic-bezier(.2,.8,.2,1) both}
+.pb-category-tool{background:linear-gradient(160deg,#2d3844,#171f29)!important;border:1px solid #566372!important;box-shadow:inset 0 1px #ffffff26,0 7px 19px #0005!important;transition:transform .2s,background .2s,border-color .2s!important}
+.pb-category-tool:hover{background:linear-gradient(150deg,#405160,#1d2934)!important;border-color:#9bafc0!important;transform:translateX(3px)!important}
+.pb-category-tool .pb-tool-icon{color:#c1d5e4!important}
+.panel,.pb6-card,.pb-pj-card{background:linear-gradient(160deg,#242e39,#141b24 60%,#111820)!important;border:1px solid #45525f!important;box-shadow:inset 0 1px #ffffff19,0 12px 28px #0004!important}
+#pb-grinding-lab{background:linear-gradient(160deg,#2b3844,#151e28 55%,#10171e)!important;border:1px solid #66727c!important}
+.pb-grind-metric{background:linear-gradient(150deg,#303b47,#19232e)!important;border:1px solid #576674!important;box-shadow:inset 0 1px #ffffff22!important}
+.pb-grind-metric strong{color:#e9f7ff!important}
+input:not([type=checkbox]):not([type=radio]):not([type=range]),select,textarea{background-color:#0f1720!important;border:1px solid #607080!important;box-shadow:inset 0 2px 6px #0005!important}
+#toolBar{position:relative;z-index:2}
+#homeButton{background:linear-gradient(160deg,#44515e,#222d38)!important;border:1px solid #7a8a99!important;border-radius:13px!important;color:#fff!important;box-shadow:inset 0 1px #ffffff35!important}
+body.pb-blade-enter main>section:not(.hidden),body.pb-blade-enter #pb-category-root{animation:pb-blade-in .4s cubic-bezier(.2,.8,.2,1) both}
+@keyframes pb-blade-in{from{opacity:.12;transform:translate3d(28px,0,0);filter:blur(5px)}to{opacity:1;transform:translate3d(0,0,0);filter:blur(0)}}
+@keyframes pb-blade-back{from{opacity:.15;transform:translate3d(-25px,0,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+body.pb-blade-back #pb-category-root,body.pb-blade-back main>section:not(.hidden){animation:pb-blade-back .34s cubic-bezier(.2,.8,.2,1) both}
+@media(max-width:650px){#pb-category-grid{grid-template-columns:1fr!important;gap:12px!important}#pb-category-grid>.pb-category-card{min-height:115px!important;padding:19px!important}#pb-category-grid>.pb-category-card strong{font-size:19px!important}header{padding-top:24px!important}}
+@media(prefers-reduced-motion:reduce){.pb-category-detail,body.pb-blade-enter main>section,body.pb-blade-back main>section,body.pb-blade-enter #pb-category-root,body.pb-blade-back #pb-category-root{animation:none!important}}
 </style></head><body class="home-view"><main>
-<header><div class="eyebrow">PRECISION ENGINEERING</div><h1><span class="brand">Pass<span class="brand-accent">Bit</span> Pro</span></h1><p>by Stefan Pettersson</p><div class="pb-build-version" aria-label="Appversion">VERSION 2.0.0 <span>· 23 OKT 2026</span></div><button aria-label="Inställningar" class="settings-gear" id="settingsGear" title="Inställningar" type="button"><svg aria-hidden="true" class="pb-icon" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="24"><path d="M10.4 2h3.2l.6 2.3a8 8 0 0 1 1.8.8l2.1-1.1 2.2 2.2-1.1 2.1a8 8 0 0 1 .8 1.8l2.3.6v3.2l-2.3.6a8 8 0 0 1-.8 1.8l1.1 2.1-2.2 2.2-2.1-1.1a8 8 0 0 1-1.8.8l-.6 2.3h-3.2l-.6-2.3a8 8 0 0 1-1.8-.8l-2.1 1.1-2.2-2.2 1.1-2.1a8 8 0 0 1-.8-1.8L2 13.6v-3.2l2.3-.6a8 8 0 0 1 .8-1.8L4 5.9l2.2-2.2 2.1 1.1a8 8 0 0 1 1.8-.8z"></path><circle cx="12" cy="12" r="3"></circle></svg></button></header>
+<header><div class="eyebrow">PRECISION ENGINEERING</div><h1><span class="brand">Pass<span class="brand-accent">Bit</span> Pro</span></h1><p>by Stefan Pettersson</p><div class="pb-build-version" aria-label="Appversion">VERSION 3.0.0 <span>· 23 OKT 2026</span></div><button aria-label="Inställningar" class="settings-gear" id="settingsGear" title="Inställningar" type="button"><svg aria-hidden="true" class="pb-icon" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="24"><path d="M10.4 2h3.2l.6 2.3a8 8 0 0 1 1.8.8l2.1-1.1 2.2 2.2-1.1 2.1a8 8 0 0 1 .8 1.8l2.3.6v3.2l-2.3.6a8 8 0 0 1-.8 1.8l1.1 2.1-2.2 2.2-2.1-1.1a8 8 0 0 1-1.8.8l-.6 2.3h-3.2l-.6-2.3a8 8 0 0 1-1.8-.8l-2.1 1.1-2.2-2.2 1.1-2.1a8 8 0 0 1-.8-1.8L2 13.6v-3.2l2.3-.6a8 8 0 0 1 .8-1.8L4 5.9l2.2-2.2 2.1 1.1a8 8 0 0 1 1.8-.8z"></path><circle cx="12" cy="12" r="3"></circle></svg></button></header>
 <section aria-label="Inställningar" class="hidden" id="settingsPanel">
 <div class="panel settings-panel"><div class="settings-head"><h2 data-i18n="settings">Inställningar</h2><button aria-label="Stäng" class="settings-close" id="settingsClose" type="button"><svg aria-hidden="true" class="pb-icon" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="24"><path d="M5 5l14 14M19 5 5 19"></path></svg></button></div>
 <label data-i18n="language" for="languageSelect">Språk</label><select id="languageSelect"><option value="sv">Svenska</option><option value="en">English</option></select>
@@ -2252,5 +2289,34 @@ function calculate(){
  if(!Number.isFinite(max)||max<=0){const p=document.createElement('p');p.className='pb-grind-warning';p.textContent='Skivans märkta maxhastighet saknas. Kontrollera den före drift; appen kan inte verifiera säker hastighet.';out.prepend(p)}
 }
 host.addEventListener('input',calculate);host.addEventListener('change',calculate);calculate();
+})();
+</script><script>
+/* Titanium blade navigation: history-aware, preserving legacy calculators. */
+(()=>{
+'use strict';
+const body=document.body,home=document.getElementById('homeButton'),back=document.getElementById('pb-category-back'),grid=document.getElementById('pb-category-grid'),detail=document.getElementById('pb-category-detail'),gear=document.getElementById('settingsGear'),close=document.getElementById('settingsClose');
+const stack=[];let navigating=false;
+const current=()=>body.classList.contains('pb-settings-view')?'settings':!body.classList.contains('home-view')?'tool':detail&&!detail.hidden?'category':'home';
+const animate=(reverse=false)=>{body.classList.remove('pb-blade-enter','pb-blade-back');void body.offsetWidth;body.classList.add(reverse?'pb-blade-back':'pb-blade-enter');};
+const setBackLabel=()=>{const label=home?.querySelector('span');if(label)label.textContent='Föregående blad';};
+function goBack(){
+ if(navigating)return;
+ navigating=true;
+ const view=current();
+ if(view==='settings'){close?.click();animate(true)}
+ else if(view==='tool'){const key=window.passbitLastCategory;home?.click();if(key){requestAnimationFrame(()=>{window.passbitOpenCategory?.(key);animate(true)})}else animate(true)}
+ else if(view==='category'){back?.click();animate(true)}
+ else{animate(true)}
+ setTimeout(()=>{navigating=false;setBackLabel()},80);
+}
+if(home){home.addEventListener('click',e=>{if(navigating)return;if(current()==='tool'){e.stopImmediatePropagation();goBack()}},true)}
+if(back)back.addEventListener('click',()=>animate(true));
+if(gear)gear.addEventListener('click',()=>animate(false));
+document.addEventListener('click',e=>{if(e.target.closest('[data-category],.pb-category-tool')){animate(false);setTimeout(setBackLabel,20)}},true);
+let start=null;
+document.addEventListener('touchstart',e=>{const t=e.touches[0];if(!t||e.touches.length!==1||t.clientX>35||e.target.closest('input,select,textarea'))return;start={x:t.clientX,y:t.clientY}},{passive:true});
+document.addEventListener('touchend',e=>{if(!start)return;const t=e.changedTouches[0],dx=t.clientX-start.x,dy=t.clientY-start.y;start=null;if(dx>95&&Math.abs(dy)<dx*.55){goBack()}},{passive:true});
+document.addEventListener('touchcancel',()=>start=null,{passive:true});
+if(home)setBackLabel();
 })();
 </script></body></html>
