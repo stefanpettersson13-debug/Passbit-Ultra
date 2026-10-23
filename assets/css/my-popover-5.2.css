@@ -1,0 +1,42 @@
+/* My 5.2 – floating assistant, premium frosted glass pop-up */
+#my-toggle{bottom:calc(18px + env(safe-area-inset-bottom));right:calc(17px + env(safe-area-inset-right));background:linear-gradient(120deg,#fdf2ff,#c8eaff 70%,#e0d0ff);color:#223b54;border:1px solid #fff9;padding:7px 17px 7px 7px;box-shadow:0 9px 34px #030f2e88,0 0 0 5px #fff2;transition:transform .22s ease,box-shadow .22s ease;z-index:990}
+#my-toggle:hover{transform:translateY(-3px);box-shadow:0 14px 38px #030f2e99,0 0 0 6px #fff3}
+#my-toggle .my-avatar,.my-header .my-avatar{position:relative;background:linear-gradient(150deg,#fff8fe,#f0dbff);border:2px solid #fff;box-shadow:inset 0 -5px 9px #cba8eb77,0 2px 12px #663d9b44;display:grid;place-items:center}
+#my-toggle .my-avatar{width:43px;height:43px}
+.my-face{position:relative;display:block;width:29px;height:25px;border-radius:13px 13px 11px 11px;background:linear-gradient(145deg,#fbfdff,#bce4f3);box-shadow:inset 0 -3px 5px #6caac144;border:1px solid #a6ccdc}
+.my-face::before,.my-face::after{content:"";position:absolute;top:9px;width:5px;height:7px;border-radius:50%;background:#3d5c86;box-shadow:0 0 3px #89abff}
+.my-face::before{left:7px}.my-face::after{right:7px}
+.my-face i{position:absolute;left:12px;bottom:4px;width:6px;height:3px;border-bottom:2px solid #bf6d9b;border-radius:50%}
+.my-avatar::after{content:"";position:absolute;top:3px;right:5px;width:5px;height:5px;border-radius:50%;background:#f6b9dc;box-shadow:0 0 0 2px #fff}
+#my-panel{width:min(425px,calc(100vw - 24px));height:min(645px,calc(100dvh - 112px));border-radius:26px;border:1px solid #b9dcf399;background:linear-gradient(150deg,#1a344c 0%,#0c2037 58%,#1b2347 100%);box-shadow:0 26px 85px #000c,0 0 0 1px #fff2,0 0 45px #ae81d933;transform-origin:bottom right;animation:my-pop .28s cubic-bezier(.2,1.25,.35,1) both}
+@keyframes my-pop{from{opacity:0;transform:translateY(16px) scale(.89)}to{opacity:1;transform:translateY(0) scale(1)}}
+.my-header{padding:15px 16px;gap:12px;background:linear-gradient(110deg,#345678,#494b81 75%,#704f87);border-bottom:1px solid #d5d7ff55}
+.my-header .my-avatar{width:49px;height:49px;flex:none;border-radius:18px;transform:rotate(-5deg)}
+.my-header .my-avatar .my-face{transform:rotate(5deg)}
+.my-header strong{font-size:20px;letter-spacing:-.02em}
+.my-header small{color:#e1ddf5;font-size:11px}
+.my-header-actions{display:flex;gap:6px;margin-left:auto}
+.my-header-actions button{border:1px solid #fff5;background:#ffffff20;color:#fff;border-radius:11px;width:34px;height:34px;display:grid;place-items:center;font-size:18px;cursor:pointer}
+.my-header-actions button:hover{background:#ffffff40}
+.my-mode-row{display:flex;gap:8px;align-items:center;justify-content:space-between;padding:9px 15px;background:#10283e;border-bottom:1px solid #6485a344}
+#my-mode{background:#1c4059;border:1px solid #6a91a7;color:#f3f9ff;border-radius:10px;padding:8px 10px;font-size:12px;max-width:52%}
+#my-status{font-size:11px;color:#b9d5e4;line-height:1.3}
+#my-status[data-mode="ai"]{color:#d7c7ff}
+#my-settings-panel{padding:12px 15px;background:#182f49;border-bottom:1px solid #7292a455}
+#my-settings-panel[hidden]{display:none}
+#my-settings-panel label{display:block;font-size:12px;color:#e0eafa;margin-bottom:7px}
+#my-endpoint{width:100%;background:#091d2d;border:1px solid #7193aa;border-radius:10px;color:#fff;font-size:15px;padding:11px}
+#my-settings-panel .my-save{background:#b9d9ef;color:#1a3a51;border:0;border-radius:10px;padding:9px 13px;font-weight:800;margin-top:9px}
+#my-settings-panel p{font-size:11px;line-height:1.5;color:#b7cbdf;margin:8px 0 0}
+#my-feed{padding:17px 14px;gap:11px}
+.my-bubble{background:linear-gradient(130deg,#294b68,#364568);border:1px solid #98b3dd55;border-radius:17px 17px 17px 5px;box-shadow:0 3px 11px #0002;font-size:13px;line-height:1.55}
+.my-bubble.user{background:linear-gradient(130deg,#e1d5fa,#c3e7f4);color:#233a56;border-color:#fff8}
+#my-feed .my-action{border-radius:13px;background:#28435f;border:1px solid #7ca1c6;box-shadow:0 3px 12px #0002}
+#my-suggestions{padding:10px 13px}
+#my-suggestions button{background:#2a3f61;border-color:#827eac;color:#f0eafa}
+#my-form{padding:11px 12px 14px;background:#132a42}
+#my-input{border-radius:14px;background:#091d31;border-color:#718ba7}
+#my-form button{border-radius:13px;background:linear-gradient(130deg,#d4e8fc,#d5c2fb);color:#2a3759}
+#my-form button:disabled{opacity:.6}
+@media(max-width:540px){#my-panel{right:8px;width:calc(100vw - 16px);bottom:calc(78px + env(safe-area-inset-bottom));height:min(635px,calc(100dvh - 110px));border-radius:22px}#my-toggle{right:12px}}
+@media(prefers-reduced-motion:reduce){#my-panel{animation:none}#my-toggle{transition:none}}
