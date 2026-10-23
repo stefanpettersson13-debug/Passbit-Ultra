@@ -1,0 +1,17 @@
+/* PassBit 5.0 · unified technical calculators */
+.pb5-panel{max-width:100%;overflow:hidden}
+.pb5-field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:20px 0}
+.pb5-field-grid label{font-size:12px;color:#bdd1df;display:flex;flex-direction:column;gap:7px;font-weight:650}
+.pb5-unit{font-weight:400;color:#8eafc3}
+.pb5-field-grid input{min-width:0;width:100%;font-size:16px;padding:13px;border:1px solid #506d80;border-radius:12px;background:#0b2131;color:#f1f8fb}
+.pb5-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.pb5-metric{padding:13px;background:linear-gradient(150deg,#1a394d,#102738);border:1px solid #3a5a6d;border-radius:14px}
+.pb5-metric small{display:block;color:#a7c3d3;font-size:11px;line-height:1.35}
+.pb5-metric strong{display:block;margin-top:7px;color:#eaf5fa;font-size:19px;font-variant-numeric:tabular-nums}
+.pb5-metric strong span{font-size:12px;color:#9dbccc}
+.pb5-caution{padding:12px;background:#2b3d46;border-left:3px solid #dfb877;border-radius:7px;font-size:12px;line-height:1.6;margin-top:14px}
+.pb5-visual{max-width:540px;margin:15px auto}
+.pb5-visual svg{width:100%;display:block}
+.pb5-copy{width:100%;background:linear-gradient(130deg,#7595a7,#294e65);border:1px solid #aac4d2;color:#fff;border-radius:12px;padding:13px;font-weight:750}
+.pb5-disclaimer{margin-top:15px}
+@media(max-width:430px){.pb5-field-grid{grid-template-columns:1fr 1fr;gap:9px}.pb5-metric strong{font-size:16px}.pb5-field-grid input{padding:11px}}
