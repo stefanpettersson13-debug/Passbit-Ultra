@@ -1,0 +1,1 @@
+/* Navigation scroll stabilization; no MutationObservers */document.addEventListener('click',function(e){if(e.target.closest('[data-category],.pb-category-tool,.pb-category-back,[data-go],[data-tab],#homeButton,#settingsGear,#pb63projects')){requestAnimationFrame(()=>window.scrollTo(0,0))}},false);
