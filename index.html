@@ -593,6 +593,19 @@ body{--pb-surface:#101e29;--pb-edge:rgba(177,215,210,.14)}
 .pb-round-note{padding:12px 14px;border-radius:12px;border:1px solid #477f73;background:#17332f;color:#d1f9e5;font-size:13px;line-height:1.5;margin:0 0 12px}
 @media(min-width:760px){.pb-category-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.pb-category-project{grid-column:1/-1}.pb-category-tools{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}}
+</style><style>
+/* Clean category navigation without changing tool implementations */
+.pb-category-detail{max-width:740px;margin:0 auto}
+.pb-category-head{padding:6px 0 14px;margin-bottom:8px;border-bottom:1px solid #31504f}
+.pb-category-head h2{font-size:clamp(23px,5vw,29px)!important}
+.pb-category-summary{font-size:12px;color:#a9c9c1;margin:12px 2px 16px}
+.pb-category-tools{gap:9px!important}
+.pb-category-tool{width:100%;min-height:64px!important;display:flex!important;align-items:center!important;gap:13px!important;padding:13px 15px!important;box-shadow:none!important;transition:background .12s,border-color .12s!important}
+.pb-category-tool:active{background:#20433f!important}
+.pb-category-tool-name{flex:1;text-align:left;overflow-wrap:anywhere}
+.pb-category-tool-arrow{font-size:23px;color:#a5d8c6;margin-left:auto}
+.pb-category-back{display:inline-flex;align-items:center;margin-bottom:10px}
+@media(max-width:759px){.pb-category-tools{grid-template-columns:1fr!important}}
 </style></head><body class="home-view"><main>
 <header><div class="eyebrow">PRECISION ENGINEERING</div><h1><span class="brand">Pass<span class="brand-accent">Bit</span> Pro</span></h1><p>by Stefan Pettersson</p><button aria-label="Inställningar" class="settings-gear" id="settingsGear" title="Inställningar" type="button"><svg aria-hidden="true" class="pb-icon" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="24"><path d="M10.4 2h3.2l.6 2.3a8 8 0 0 1 1.8.8l2.1-1.1 2.2 2.2-1.1 2.1a8 8 0 0 1 .8 1.8l2.3.6v3.2l-2.3.6a8 8 0 0 1-.8 1.8l1.1 2.1-2.2 2.2-2.1-1.1a8 8 0 0 1-1.8.8l-.6 2.3h-3.2l-.6-2.3a8 8 0 0 1-1.8-.8l-2.1 1.1-2.2-2.2 1.1-2.1a8 8 0 0 1-.8-1.8L2 13.6v-3.2l2.3-.6a8 8 0 0 1 .8-1.8L4 5.9l2.2-2.2 2.1 1.1a8 8 0 0 1 1.8-.8z"></path><circle cx="12" cy="12" r="3"></circle></svg></button></header>
 <section aria-label="Inställningar" class="hidden" id="settingsPanel">
@@ -1895,9 +1908,39 @@ const used=new Set(Object.values(groups).flatMap(g=>g.tools));
 for(const b of all)if(!used.has(b.dataset.go))groups.workshop.tools.push(b.dataset.go);
 let current=null;
 function reset(){current=null;grid.hidden=false;detail.hidden=true;document.getElementById('pb-project-workspace').hidden=true;tools.hidden=false;homeTitle.textContent='Välj område'}
-function open(key){const group=groups[key];if(!group)return;current=key;tools.hidden=key==='projects';document.getElementById('pb-project-workspace').hidden=key!=='projects';grid.hidden=true;detail.hidden=false;homeTitle.textContent='';document.getElementById('pb-category-title').textContent=group.title;document.getElementById('pb-category-tier').textContent=group.tier;tools.replaceChildren();
- for(const id of group.tools){const original=all.find(x=>x.dataset.go===id);if(!original)continue;const b=document.createElement('button');b.type='button';b.className='pb-category-tool';const icon=document.createElement('span');icon.className='pb-tool-icon';icon.textContent=original.querySelector('.glyph')?.textContent.trim()||'◇';const label=document.createElement('span');label.textContent=original.querySelector('strong')?.textContent||id;b.append(icon,label);b.addEventListener('click',()=>original.click());tools.append(b)}
- if(key==='projects'){window.passbitProjectsRender?.();}window.scrollTo({top:0,behavior:'instant'});
+function open(key){
+ const group=groups[key];if(!group)return;
+ current=key;tools.hidden=key==='projects';
+ document.getElementById('pb-project-workspace').hidden=key!=='projects';
+ grid.hidden=true;detail.hidden=false;homeTitle.textContent='';
+ document.getElementById('pb-category-title').textContent=group.title;
+ document.getElementById('pb-category-tier').textContent=group.tier;
+ tools.replaceChildren();
+ const seen=new Set();
+ for(const id of group.tools){
+  const original=all.find(x=>x.dataset.go===id);if(!original)continue;
+  const name=(original.querySelector('strong')?.textContent||id).trim();
+  const normalized=name.toLocaleLowerCase('sv-SE').replace(/\\s+/g,' ');
+  if(seen.has(normalized))continue;seen.add(normalized);
+  const b=document.createElement('button');b.type='button';b.className='pb-category-tool';
+  const icon=document.createElement('span');icon.className='pb-tool-icon';
+  const glyph=original.querySelector('.glyph');
+  icon.textContent=glyph?.textContent.trim()||'◇';
+  const label=document.createElement('span');label.className='pb-category-tool-name';label.textContent=name;
+  const arrow=document.createElement('span');arrow.className='pb-category-tool-arrow';arrow.textContent='›';
+  b.append(icon,label,arrow);
+  b.addEventListener('click',()=>original.click());tools.append(b);
+ }
+ if(key!=='projects'){
+  const summary=document.createElement('p');summary.className='pb-category-summary';
+  summary.textContent=seen.size+' verktyg · Välj ett verktyg för att öppna det';
+  tools.before(summary);
+  detail.querySelectorAll('.pb-category-summary').forEach((el,i)=>{if(i>0)el.remove()});
+ }else{
+  detail.querySelectorAll('.pb-category-summary').forEach(el=>el.remove());
+  window.passbitProjectsRender?.();
+ }
+ window.scrollTo({top:0,behavior:'instant'});
 }
 root.querySelectorAll('[data-category]').forEach(b=>b.addEventListener('click',()=>open(b.dataset.category)));
 document.getElementById('pb-category-back').addEventListener('click',()=>{reset();window.scrollTo({top:0,behavior:'instant'})});
