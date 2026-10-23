@@ -44,5 +44,41 @@ close.addEventListener('click',hide);
 form.addEventListener('submit',e=>{e.preventDefault();const value=input.value.trim();if(!value)return;input.value='';reply(value)});
 chips.querySelectorAll('[data-my-question]').forEach(b=>b.addEventListener('click',()=>reply(b.dataset.myQuestion)));
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!panel.hidden)hide()});
+
+/* Optional remote AI, user-configured server endpoint only. */
+const mode=document.getElementById('my-mode'),settings=document.getElementById('my-settings'),settingsPanel=document.getElementById('my-settings-panel'),endpoint=document.getElementById('my-endpoint'),saveEndpoint=document.getElementById('my-save-endpoint'),status=document.getElementById('my-status'),clear=document.getElementById('my-clear');
+const history=[];
+const endpointKey='passbit.my.endpoint';
+let pending=false;
+try{endpoint.value=localStorage.getItem(endpointKey)||''}catch(e){}
+function endpointValid(url){try{const u=new URL(url);return u.protocol==='https:'&&!u.username&&!u.password&&!u.hash&&!u.search&&u.hostname.length>3}catch{return false}}
+function setStatus(){const ai=mode.value==='ai';status.textContent=ai?(endpointValid(endpoint.value.trim())?'AI-läge · egen server':'AI-läge · serveradress saknas'):'Lokal guide · fungerar offline';status.dataset.mode=ai?'ai':'local'}
+mode.addEventListener('change',()=>{setStatus();bubble(mode.value==='ai'?'AI-läge valt. Meddelanden skickas till din konfigurerade server när du trycker Skicka.':'Lokal guide aktiverad. Inga frågor skickas till en AI-server.')});
+settings.addEventListener('click',()=>{settingsPanel.hidden=!settingsPanel.hidden;settings.setAttribute('aria-expanded',String(!settingsPanel.hidden))});
+saveEndpoint.addEventListener('click',()=>{const url=endpoint.value.trim();if(url&&!endpointValid(url)){bubble('Ange en giltig HTTPS-adress till din egen AI-proxy. Ange aldrig en API-nyckel här.');return}try{if(url)localStorage.setItem(endpointKey,url);else localStorage.removeItem(endpointKey)}catch(e){}settingsPanel.hidden=true;settings.setAttribute('aria-expanded','false');setStatus();bubble(url?'Serveradressen är sparad på den här enheten.':'Serveradressen har tagits bort.')});
+clear.addEventListener('click',()=>{history.length=0;feed.replaceChildren();bubble('Ny konversation! 🌸 Vad vill du undersöka?')});
+async function askAI(question){
+if(pending)return;
+const url=endpoint.value.trim();
+if(!endpointValid(url)){bubble('För att använda AI-läget behöver du först ansluta en säker server. Tryck på kugghjulet för att ange HTTPS-adressen. Ingen API-nyckel ska skrivas in i appen.');settingsPanel.hidden=false;return}
+bubble(question,'user');
+history.push({role:'user',content:question.slice(0,1200)});
+if(history.length>12)history.splice(0,history.length-12);
+pending=true;const button=form.querySelector('button[type="submit"]');button.disabled=true;button.textContent='Tänker…';
+const wait=bubble('My funderar… ✨');
+const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),20000);
+try{
+const response=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:history}),signal:controller.signal,mode:'cors',credentials:'omit'});
+if(!response.ok)throw Error('Servern svarade med HTTP '+response.status);
+const data=await response.json();
+if(typeof data.answer!=='string'||!data.answer.trim())throw Error('Tomt svar');
+wait.remove();bubble(data.answer.slice(0,4500));history.push({role:'assistant',content:data.answer.slice(0,1200)});
+}catch(e){wait.remove();bubble('Jag kunde inte nå AI-servern just nu ('+(e.name==='AbortError'?'tidsgräns':e.message)+'). Kontrollera anslutningen eller välj Lokal guide.');history.pop()}
+finally{clearTimeout(timer);pending=false;button.disabled=false;button.textContent='Skicka'}
+}
+form.addEventListener('submit',e=>{if(mode.value!=='ai')return;e.stopImmediatePropagation();e.preventDefault();const value=input.value.trim();if(!value||pending)return;input.value='';askAI(value)},true);
+chips.querySelectorAll('[data-my-question]').forEach(b=>b.addEventListener('click',e=>{if(mode.value!=='ai')return;e.stopImmediatePropagation();askAI(b.dataset.myQuestion)},true));
+setStatus();
+
 window.passbitMy={open:show,ask:reply};
 })();
