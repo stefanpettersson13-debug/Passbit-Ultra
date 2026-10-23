@@ -534,6 +534,7 @@ nav.tabs button.active{box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 2px 12px
  .dashboard .dashbtn{box-shadow:inset 0 1px 0 rgba(255,255,255,.04)!important}
  .dashboard .dashbtn:active:not(.pb67-dragging){transform:scale(.985)!important}
 }
+ .pb-category-card.pb67-dragging{opacity:.3!important;border:2px dashed #a5f5ce!important} #pb63reorder,#pb64orderlist,#pb63resetorder,#pb63orderbanner{display:none!important}
 </style><style>
 /* PassBit Pro: five-section landing, original tools kept intact */
 body.home-view .dashboard{display:none!important}
@@ -1601,28 +1602,26 @@ $('pb63tempunit').value=localStorage.getItem('passbit-temperature-unit-v63')==='
 <script>document.querySelector('#metrology .panel > h2 .spc-info')?.remove();</script>
 <script>document.getElementById('pb65grindSpeed')?.addEventListener('click',()=>{document.querySelector('[data-tab=grinding]')?.click();});</script>
 <script>
-/* Press for 550ms, then drag cards. Compatible with Safari touch events and mouse. */
+/* Long-press sorting for the visible five-category home screen. */
 (()=>{
-const dash=document.querySelector('.dashboard');if(!dash)return;
-const KEY='passbit-menu-order-v63';
-const hint=document.createElement('p');hint.className='pb67-sort-hint';hint.textContent='Håll ned ett verktyg för att flytta det';dash.insertAdjacentElement('afterend',hint);
-let pending=null,active=null,ghost=null,timer=null,blockClick=false,blockTimer=null;
-const card=el=>el?.closest?.('.dashbtn[data-go]');
-function save(){try{localStorage.setItem(KEY,JSON.stringify([...dash.querySelectorAll('.dashbtn[data-go]')].map(el=>el.dataset.go)))}catch{}}
-function clearTimer(){if(timer){clearTimeout(timer);timer=null}}
-function start(b,x,y){if(!pending||pending.el!==b)return;active={el:b,dx:x-pending.rect.left,dy:y-pending.rect.top};ghost=b.cloneNode(true);ghost.classList.add('pb67-drag-ghost');ghost.style.width=pending.rect.width+'px';ghost.style.height=pending.rect.height+'px';document.body.append(ghost);b.classList.add('pb67-dragging');document.body.classList.add('pb67-sorting');position(x,y);if(navigator.vibrate)try{navigator.vibrate(20)}catch{};hint.textContent='Dra till önskad plats och släpp';}
-function position(x,y){if(!active||!ghost)return;ghost.style.left=(x-active.dx)+'px';ghost.style.top=(y-active.dy)+'px';const hit=card(document.elementFromPoint(x,y));if(hit&&hit!==active.el&&dash.contains(hit)){const cards=[...dash.querySelectorAll('.dashbtn[data-go]')],i=cards.indexOf(active.el),j=cards.indexOf(hit);if(i<j)dash.insertBefore(active.el,hit.nextSibling);else dash.insertBefore(active.el,hit);}}
-function end(){clearTimer();pending=null;if(active){active.el.classList.remove('pb67-dragging');ghost?.remove();ghost=null;active=null;document.body.classList.remove('pb67-sorting');save();hint.textContent='Håll ned ett verktyg för att flytta det';blockClick=true;clearTimeout(blockTimer);blockTimer=setTimeout(()=>blockClick=false,450)}}
-dash.addEventListener('click',e=>{if(blockClick){e.preventDefault();e.stopImmediatePropagation();blockClick=false;}},true);
-dash.addEventListener('contextmenu',e=>{if(active||pending){e.preventDefault()}},true);
-// Native touch handlers allow normal scrolling unless the long press has activated.
-dash.addEventListener('touchstart',e=>{if(e.touches.length!==1||active)return;const t=e.touches[0],b=card(e.target);if(!b)return;clearTimer();const rect=b.getBoundingClientRect();pending={el:b,x:t.clientX,y:t.clientY,rect};timer=setTimeout(()=>{timer=null;start(b,t.clientX,t.clientY)},550)},{passive:true});
-dash.addEventListener('touchmove',e=>{if(!pending&&!active)return;const t=e.touches[0];if(!t)return;if(active){e.preventDefault();position(t.clientX,t.clientY)}else if(Math.hypot(t.clientX-pending.x,t.clientY-pending.y)>9){clearTimer();pending=null}},{passive:false});
-dash.addEventListener('touchend',()=>end(),{passive:true});dash.addEventListener('touchcancel',()=>end(),{passive:true});
-// Desktop: long press with mouse, then drag.
-dash.addEventListener('mousedown',e=>{if(e.button!==0||active)return;const b=card(e.target);if(!b)return;clearTimer();const rect=b.getBoundingClientRect();pending={el:b,x:e.clientX,y:e.clientY,rect};timer=setTimeout(()=>{timer=null;start(b,pending.x,pending.y)},550)});
-window.addEventListener('mousemove',e=>{if(active){position(e.clientX,e.clientY)}else if(pending&&Math.hypot(e.clientX-pending.x,e.clientY-pending.y)>9){clearTimer();pending=null}});
-window.addEventListener('mouseup',()=>end());window.addEventListener('blur',()=>end());
+const grid=document.getElementById('pb-category-grid');if(!grid)return;
+const KEY='passbit-category-order-v1';
+const cards=()=>[...grid.querySelectorAll('.pb-category-card[data-category]')];
+try{const saved=JSON.parse(localStorage.getItem(KEY)||'[]');if(Array.isArray(saved)){const byId=new Map(cards().map(el=>[el.dataset.category,el]));saved.forEach(id=>{if(byId.has(id)){grid.append(byId.get(id));byId.delete(id)}});byId.forEach(el=>grid.append(el))}}catch{}
+let pending=null,active=null,ghost=null,timer=null,suppress=false;
+const hint=document.createElement('p');hint.className='pb67-sort-hint';hint.textContent='Håll fingret på ett kort för att flytta det';grid.after(hint);
+function cancelTimer(){clearTimeout(timer);timer=null}
+function begin(){if(!pending)return;const {el,x,y}=pending,rect=el.getBoundingClientRect();active={el,dx:x-rect.left,dy:y-rect.top};ghost=el.cloneNode(true);ghost.classList.add('pb67-drag-ghost');Object.assign(ghost.style,{width:rect.width+'px',height:rect.height+'px',pointerEvents:'none'});document.body.append(ghost);el.classList.add('pb67-dragging');document.body.classList.add('pb67-sorting');move(x,y);hint.textContent='Dra kortet till önskad plats och släpp'}
+function move(x,y){if(!active)return;ghost.style.left=x-active.dx+'px';ghost.style.top=y-active.dy+'px';const hit=document.elementFromPoint(x,y)?.closest('.pb-category-card[data-category]');if(hit&&hit!==active.el&&grid.contains(hit)){const items=cards(),from=items.indexOf(active.el),to=items.indexOf(hit);grid.insertBefore(active.el,from<to?hit.nextSibling:hit)}}
+function finish(){cancelTimer();pending=null;if(!active)return;active.el.classList.remove('pb67-dragging');ghost?.remove();ghost=null;active=null;document.body.classList.remove('pb67-sorting');try{localStorage.setItem(KEY,JSON.stringify(cards().map(el=>el.dataset.category)))}catch{}hint.textContent='Håll fingret på ett kort för att flytta det';suppress=true;setTimeout(()=>suppress=false,600)}
+grid.addEventListener('click',e=>{if(suppress){e.preventDefault();e.stopImmediatePropagation();suppress=false}},true);
+grid.addEventListener('contextmenu',e=>{if(pending||active)e.preventDefault()},true);
+grid.addEventListener('touchstart',e=>{if(e.touches.length!==1||active)return;const el=e.target.closest('.pb-category-card[data-category]');if(!el)return;const t=e.touches[0];pending={el,x:t.clientX,y:t.clientY};cancelTimer();timer=setTimeout(begin,450)},{passive:true});
+grid.addEventListener('touchmove',e=>{const t=e.touches[0];if(!t)return;if(active){e.preventDefault();move(t.clientX,t.clientY)}else if(pending&&Math.hypot(t.clientX-pending.x,t.clientY-pending.y)>10){cancelTimer();pending=null}},{passive:false});
+grid.addEventListener('touchend',finish,{passive:true});grid.addEventListener('touchcancel',finish,{passive:true});
+grid.addEventListener('mousedown',e=>{if(e.button!==0||active||('ontouchstart' in window))return;const el=e.target.closest('.pb-category-card[data-category]');if(!el)return;pending={el,x:e.clientX,y:e.clientY};cancelTimer();timer=setTimeout(begin,450)});
+window.addEventListener('mousemove',e=>{if(active)move(e.clientX,e.clientY);else if(pending&&Math.hypot(e.clientX-pending.x,e.clientY-pending.y)>10){cancelTimer();pending=null}});
+window.addEventListener('mouseup',finish);window.addEventListener('blur',finish);
 })();
 </script><script>
 (()=>{
