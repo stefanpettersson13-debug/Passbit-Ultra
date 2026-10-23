@@ -1,0 +1,11 @@
+/* Hydraulikbyggare – samma metallic system som hydraulikbiblioteket */
+#hydraulics #hyd-builder{display:grid;gap:14px}
+#hydraulics .hb-presets{display:flex;gap:8px;flex-wrap:wrap}
+#hydraulics .hb-presets button,#hydraulics #hb-copy{border:1px solid #7a9cb0;background:linear-gradient(145deg,#59788b,#18394d);border-radius:12px;color:#f0f8fc;padding:11px 15px;font-weight:700}
+#hydraulics .hb-svg{background:linear-gradient(155deg,#142d40,#091c2a);border:1px solid #39596c;border-radius:15px;padding:12px;max-width:700px;margin:auto;width:100%}
+#hydraulics .hb-parts{display:grid;gap:8px}
+#hydraulics .hb-part{display:flex;align-items:flex-start;gap:11px;border:1px solid #35576c;background:#0c2434;padding:12px;border-radius:12px}
+#hydraulics .hb-num{display:grid;place-items:center;flex:none;width:27px;height:27px;border-radius:9px;background:#3c657c;color:#f1f9fc;font-size:12px;font-weight:800}
+#hydraulics .hb-part strong{display:block;color:#e5f3f9;font-size:13px}
+#hydraulics .hb-part small{display:block;color:#a5c1d0;font-size:11px;line-height:1.5;margin-top:4px}
+#hydraulics #hb-copy{width:100%}
