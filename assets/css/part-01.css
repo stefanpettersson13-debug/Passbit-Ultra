@@ -1,0 +1,482 @@
+/* css/styles.css */
+
+:root{color-scheme:dark;--bg:#0d1727;--panel:#19283d;--muted:#a5b6c9;--line:#30445b;--green:#70e2ac;--blue:#83baff}
+*{box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:#f4f7fb;margin:0;padding:env(safe-area-inset-top) 16px 35px}
+main{max-width:640px;margin:auto}header{padding:28px 2px 15px}h1{font-size:29px;margin:0 0 5px}header p,.hint{color:var(--muted);font-size:13px;line-height:1.5}
+.tabs{display:flex;gap:6px;background:#111f30;border-radius:13px;padding:5px;margin:12px 0 18px}
+.tabs button{flex:1;background:transparent;border:0;color:#afbed0;padding:13px 5px;border-radius:10px;font-weight:700;font-size:14px}
+.tabs button.active{background:#315478;color:white}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:17px;margin-bottom:15px}
+h2{font-size:17px;margin:0 0 16px}label{display:block;color:#b8c9d9;font-size:13px;margin:13px 0 6px}
+input,textarea,select{width:100%;border:1px solid #45617e;background:#0e1c2e;border-radius:11px;color:white;padding:13px;font-size:18px;outline:none}
+textarea{font-size:13px;line-height:1.5;min-height:140px;font-family:ui-monospace,monospace}
+input:focus,textarea:focus{border-color:var(--blue)}input[type=range]{padding:0;border:0;background:transparent;accent-color:#70e2ac;height:30px;cursor:pointer}.rangehead{display:flex;justify-content:space-between;align-items:center;margin-top:12px}.rangehead label{margin:0}.rangehead output{color:var(--green);font-weight:800;font-variant-numeric:tabular-nums}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.btn{border:0;border-radius:11px;background:#315478;color:white;padding:12px 14px;font-size:14px;font-weight:700;cursor:pointer}
+.btn.primary{background:#70e2ac;color:#092419}.btn.outline{background:transparent;border:1px solid #49647e;color:#c8d8e9}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}
+.result{background:#102a30;border:1px solid #295d56;padding:14px;border-radius:13px;margin-top:13px}
+.result small{display:block;color:#9bcab9;margin-bottom:4px}.big{font-size:29px;font-weight:800;color:var(--green);font-variant-numeric:tabular-nums}
+.metric{background:#101f33;border-radius:12px;padding:12px}.metric strong{display:block;font-size:21px;margin-top:5px;color:var(--blue)}
+.note{color:var(--muted);font-size:13px;line-height:1.55}.error{color:#ffb0a8}
+.block{display:flex;align-items:center;justify-content:space-between;padding:12px 13px;border-radius:9px;background:#244259;margin:6px 0;font-variant-numeric:tabular-nums}
+.block strong{font-size:19px}.hidden{display:none}svg{width:100%;height:auto;display:block}
+nav.tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}nav.tabs button{font-size:12px;padding:11px 2px;white-space:nowrap} .tablewrap{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:10px 7px;border-bottom:1px solid var(--line);white-space:nowrap}th{color:var(--muted)}.kpi{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}.kpi .metric strong{font-size:18px}.fit-status{font-size:13px;font-weight:700;margin-top:10px;color:var(--green)}.fit-status.warn{color:#ffd28b}.tag{display:inline-block;border-radius:7px;background:#28485b;padding:4px 7px;color:#bce7ff;font-size:12px}.fine{font-size:12px;color:var(--muted);line-height:1.5}footer{text-align:center;color:#8297ab;font-size:12px;padding:12px 0 30px}
+
+/* PassBit Pro 4.4 · precision instrument interface */
+:root{--bg:#080e17;--panel:#141f2e;--muted:#a4b3c5;--line:#304258;--green:#9cf4c4;--blue:#8ecaff}
+body{background:radial-gradient(ellipse 100% 380px at 50% -120px,#19354b 0%,transparent 90%),var(--bg);padding-left:14px;padding-right:14px}
+main{max-width:740px}
+header{padding:26px 2px 12px}
+header h1{font-size:clamp(26px,6vw,36px);letter-spacing:-.9px;font-weight:850}
+header p{font-size:13px}
+.eyebrow{color:#9cf4c4;letter-spacing:2px;font-weight:800;font-size:10px;text-transform:uppercase;margin-bottom:8px}
+.panel{border-radius:17px;background:linear-gradient(145deg,#182638,#121c2a);box-shadow:0 10px 30px #0000001a;padding:18px}
+.panel h2{font-size:17px;letter-spacing:-.2px}
+input,select,textarea{background:#0c1725;border-color:#3a5268;min-height:49px}
+input:focus,select:focus,textarea:focus{outline:2px solid #7fc7f4;outline-offset:1px}
+button{touch-action:manipulation}
+.btn{min-height:44px}
+.btn.primary{background:#9cf4c4;color:#09251b}
+.tabs{position:sticky;top:0;z-index:5;background:#0a1420ed;backdrop-filter:blur(16px);border:1px solid #263c52;border-radius:14px;padding:6px}
+nav.tabs{grid-template-columns:repeat(3,minmax(0,1fr))}
+nav.tabs button{white-space:normal;line-height:1.25;min-height:48px;border:1px solid transparent}
+nav.tabs button.active{background:#28485d;border-color:#50718b;color:#fff}
+.result{background:linear-gradient(140deg,#12352f,#11262a);border-color:#376e5e}
+.big{font-size:clamp(26px,7vw,36px);letter-spacing:-.7px}
+.dashboard{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0 0 18px}
+.dashbtn{border:1px solid #334b61;background:linear-gradient(145deg,#1a2a3d,#101b29);color:#f4f8fb;border-radius:15px;padding:16px;text-align:left;min-height:100px;cursor:pointer}
+.dashbtn .glyph{display:block;font-size:25px;margin-bottom:10px}
+.dashbtn strong{display:block;font-size:14px;margin-bottom:4px}
+.dashbtn small{display:block;color:#a9bfd1;font-size:11px;line-height:1.4}
+.hero{display:flex;justify-content:space-between;align-items:center;gap:8px;background:#112b2b;border:1px solid #315b52;border-radius:13px;padding:12px 14px;margin:6px 0 15px}
+.hero strong{color:#b3f8d2;font-size:12px;letter-spacing:.4px}
+.hero small{color:#afc5bd;font-size:11px}
+.sectiontitle{color:#b4c5d4;font-size:12px;text-transform:uppercase;letter-spacing:1.4px;margin:14px 2px 10px}
+.utilitybar{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.utilitybar button{background:#1d3143;color:#cce6f6;border:1px solid #3b5c75;border-radius:9px;padding:9px 12px;font-weight:650;font-size:12px}
+.statusline{font-size:12px;color:#a4b3c5;min-height:16px}
+@media(min-width:650px){.dashboard{grid-template-columns:repeat(3,minmax(0,1fr))}nav.tabs{grid-template-columns:repeat(5,minmax(0,1fr))}nav.tabs button{font-size:11px}}
+@media(prefers-reduced-motion:no-preference){.dashbtn:active,.btn:active{transform:scale(.985)}}
+
+body{font-family:"Avenir Next","SF Pro Display",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+header h1{display:flex;align-items:baseline;flex-wrap:wrap;gap:12px;font-size:clamp(31px,8vw,45px);letter-spacing:-1.5px;font-weight:800}
+.brand-accent{color:#9cf4c4}.version{font-size:13px;letter-spacing:1px;color:#9cf4c4;border:1px solid #467864;border-radius:22px;padding:4px 10px}
+header .eyebrow{letter-spacing:2.1px}
+.quickfits{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+.quickfits button{border:1px solid #42657a;background:#20354a;color:#d5e9f5;border-radius:22px;padding:9px 12px;font-weight:700}
+.fitdiagram{background:#0c1928;border:1px solid #334c62;border-radius:13px;margin-top:14px;padding:12px}
+.fitdiagram h3{margin:0 0 8px;font-size:13px;color:#e1edf5}
+
+/* PassBit Pro 4.4 — refined precision instrument visual language */
+:root{--bg:#080e16;--panel:#121d2b;--line:#2b3d50;--green:#b5e8cc;--blue:#9bc9e8;--muted:#9eb1c2}
+body{background:radial-gradient(ellipse 100% 480px at 50% -210px,#25405a 0%,transparent 85%),#080e16;letter-spacing:.01em}
+header{padding-top:36px;padding-bottom:21px;border-bottom:1px solid #29394a;margin-bottom:17px}
+header h1{font-size:clamp(34px,8vw,48px);font-weight:760;letter-spacing:-2px}
+header .eyebrow{color:#b4c7d8;letter-spacing:2.5px;font-size:9px}
+.brand-accent{color:#b5e8cc}
+.version{background:#152d2c;color:#b5e8cc;border-color:#41665e}
+header p{color:#9db3c5;font-size:12px;letter-spacing:.5px}
+.panel{background:linear-gradient(155deg,#182637,#111b29);border-color:#2c3e50;border-radius:21px;box-shadow:0 14px 35px #00000026;padding:21px}
+.panel h2{font-size:19px;font-weight:720;letter-spacing:-.45px}
+.dashbtn{border-radius:18px;border-color:#35485b;background:linear-gradient(145deg,#1b2b3b,#121d2a);box-shadow:inset 0 1px 0 #ffffff08}
+.dashbtn:focus-visible,.btn:focus-visible,nav button:focus-visible{outline:2px solid #b5e8cc;outline-offset:2px}
+.dashbtn strong{letter-spacing:-.2px;font-size:15px}
+.dashbtn .glyph{filter:saturate(.65)}
+.hero{background:linear-gradient(120deg,#152d30,#172b38);border-color:#375759;border-radius:17px}
+.hero strong{color:#b5e8cc}
+.tabs{border-radius:17px;background:#0c1722ed}
+nav.tabs button.active{background:#284b56;border-color:#4a7276}
+input,select,textarea{border-radius:12px;background:#0b1724;border-color:#3b5265}
+input:focus,select:focus,textarea:focus{outline-color:#b5e8cc}
+.section-kicker{font-size:10px;font-weight:800;letter-spacing:2px;color:#8fbcb5;margin-bottom:9px}
+.grind-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;margin:17px 0}
+.grind-input-card{border:1px solid #354b60;background:#101d2c;border-radius:15px;padding:13px}
+.input-card-title{font-size:10px;font-weight:800;letter-spacing:.6px;white-space:nowrap;margin-bottom:9px}
+.dot-wheel,.dot-work{display:inline-block;width:9px;height:9px;border-radius:50%;background:#b5e8cc;margin-right:5px}
+.dot-work{background:#9bc9e8}
+.grind-input-card label{font-size:12px;margin:9px 0 5px}
+.grind-input-card input{font-size:17px;padding:11px;min-height:46px}
+.grind-readouts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.grind-readout{border-radius:16px;padding:16px 12px;background:linear-gradient(145deg,#15352f,#11262b);border:1px solid #34675c}
+.grind-readout.work{background:linear-gradient(145deg,#173247,#132637);border-color:#3d5e79}
+.grind-readout small{font-size:10px;color:#c0d5ce;letter-spacing:.6px}
+.grind-readout.work small{color:#c2d6e6}
+.grind-value{font-size:clamp(22px,5vw,32px);font-weight:800;color:#b5e8cc;font-variant-numeric:tabular-nums;letter-spacing:-1px;margin:9px 0}
+.grind-readout.work .grind-value{color:#9bc9e8}
+.grind-value span{font-size:13px;letter-spacing:0}
+.active-diameter{background:#244037;color:#c7f8d9}
+.safety{padding:13px;border:1px solid #685840;border-radius:13px;background:#342b1e}
+@media(max-width:360px){.grind-grid,.grind-readouts{grid-template-columns:1fr}.input-card-title{white-space:normal}}
+/* 4.5: one navigation surface; no repeated dashboard + tab menu */
+nav.tabs{display:none!important}
+#toolBar.hidden,#currentTool.hidden,#homeTitle.hidden,.dashboard.hidden{display:none!important}
+#toolBar{justify-content:space-between;margin:9px 0 12px}
+#currentTool{margin:9px 0 16px;font-size:19px;letter-spacing:-.4px}
+header{margin-bottom:25px}
+@media(max-width:650px){.dashboard{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.dashbtn{min-height:112px;padding:15px}}
+
+/* Settings and two carefully tuned themes */
+#workshopHero{margin:0 0 18px;padding:13px 16px}
+#workshopHero>div{display:flex;flex-direction:column;gap:5px}
+.settings-gear{flex:none;display:grid;place-items:center;width:45px;height:45px;border-radius:13px;border:1px solid #50756e;background:#213e3d;color:#d2f8e3;font-size:25px;cursor:pointer}
+.settings-gear:active{transform:scale(.96)}
+#settingsPanel.hidden{display:none!important}
+.settings-panel{margin:0 0 17px}
+.settings-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.settings-head h2{margin:0}
+.settings-close{border:1px solid var(--line);border-radius:10px;background:transparent;color:inherit;font-size:17px;padding:7px 12px}
+.settings-panel select{margin:6px 0 17px}
+body.light{color:#172638;background:radial-gradient(ellipse 100% 450px at 50% -230px,#c7e2e6 0%,transparent 80%),#f2f5f8}
+body.light .panel{background:linear-gradient(150deg,#fff,#f7f9fc);border-color:#d7e1ea;box-shadow:0 12px 28px #20344a0b}
+body.light header{border-color:#d6e1ea}
+body.light header .eyebrow,body.light header p,body.light .note,body.light .hint,body.light .fine,body.light .grind-readout small{color:#52687a}
+body.light .dashbtn{background:linear-gradient(145deg,#fff,#f4f8fb);border-color:#d4e0e8;color:#172638;box-shadow:0 7px 20px #20344a0b}
+body.light .dashbtn small{color:#52687a}
+body.light .hero{background:linear-gradient(120deg,#e1f3ed,#e5f0f7);border-color:#b9d7d1}
+body.light .hero strong{color:#225e4d}
+body.light .hero small{color:#4b6b66}
+body.light .settings-gear{background:#fff;border-color:#b9d7d1;color:#225e4d}
+body.light input,body.light select,body.light textarea{background:#fff;color:#172638;border-color:#b9cbd9}
+body.light input::placeholder{color:#728494}
+body.light .result,body.light .metric,body.light .grind-input-card{background:#edf4f7;color:#172638;border-color:#d3e1e8}
+body.light .result small,body.light .metric small,body.light .section-kicker{color:#496879}
+body.light .big,body.light .metric strong{color:#174f49}
+body.light .grind-readout{background:#e0f1e9;border-color:#b3d7c6}
+body.light .grind-readout.work{background:#e4f0f8;border-color:#bed6e8}
+body.light .grind-readout .grind-value{color:#1c6653}
+body.light .grind-readout.work .grind-value{color:#285f88}
+body.light .grind-readout small{color:#486a61}
+body.light .active-diameter{background:#d9f0e5;color:#1e5948}
+body.light .utilitybar button,body.light .settings-close{color:#172638;border-color:#c9d8e2}
+body.light .btn.outline{background:#eaf2f6;color:#173c52;border-color:#c9dbe6}
+body.light .safety{background:#fff4e1;border-color:#e6c78d;color:#795321}
+body.light table{color:#172638}
+body.light th{color:#426173}
+body.light .version{background:#dcefe6;color:#24664f;border-color:#a9d4c0}
+body.light .brand-accent{color:#257b5d}
+body.light .statusline{color:#496879}
+
+/* 4.7: unified monochrome vector icon system, sharp at any resolution */
+.pb-icon{display:block;flex-shrink:0;stroke:currentColor}
+.dashbtn .glyph{display:flex;align-items:center;justify-content:center;width:43px;height:43px;margin:0 0 14px;background:#233d45;border:1px solid #3d6366;border-radius:13px;color:#b9e9d9;filter:none}
+.dashbtn .glyph .pb-icon{width:23px;height:23px}
+.dashbtn{transition:background .18s,border-color .18s,transform .12s;position:relative}
+.dashbtn:active{border-color:#79afa1}
+.settings-gear{font-size:inherit;transition:background .18s,transform .15s}
+.settings-gear .pb-icon{width:22px;height:22px}
+.settings-close{display:grid;place-items:center;width:37px;height:37px;padding:0}
+.settings-close .pb-icon{width:18px;height:18px}
+#toolBar button{display:inline-flex;align-items:center;justify-content:center;gap:7px}
+#toolBar button .pb-icon{width:17px;height:17px}
+body.light .dashbtn .glyph{background:#e3f3ed;border-color:#b7d9cb;color:#24664f}
+body.light .settings-gear{background:#e3f3ed}
+@media(hover:hover){.dashbtn:hover{border-color:#598d86}.settings-gear:hover{background:#31534e}body.light .settings-gear:hover{background:#d4e9df}}
+
+/* 4.8 edition prototype: visual access tiers, no purchases or licenses */
+.edition-panel{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px;margin-bottom:18px;border:1px solid #38595a;border-radius:17px;background:linear-gradient(120deg,#182f35,#14222e)}
+.edition-panel>div:first-child{display:flex;flex-direction:column;gap:5px;min-width:0}
+.edition-panel strong{font-size:15px;letter-spacing:-.2px}
+.edition-panel small{font-size:11px;color:#a9bfca;line-height:1.4}
+.edition-label{font-size:9px;color:#9fcfc0;letter-spacing:1.6px;font-weight:800}
+.edition-actions{display:flex;gap:4px;flex-shrink:0;padding:4px;border:1px solid #3a5361;border-radius:12px;background:#0e1c29}
+.edition-btn{font-size:12px;font-weight:700;padding:9px 11px;border:0;border-radius:9px;background:transparent;color:#b5c8d6;cursor:pointer}
+.edition-btn.active{background:#b5e8cc;color:#17362e}
+.dashbtn{position:relative}
+.pro-label{position:absolute;top:11px;right:11px;border:1px solid #68867d;border-radius:7px;color:#c1eddb;background:#25433d;font-size:9px;letter-spacing:1px;padding:4px 6px;font-weight:800}
+.preview-locked{border-style:dashed;opacity:.76}
+#upgradePanel{margin-bottom:16px}
+#upgradePanel.hidden,#editionPanel.hidden{display:none!important}
+body.light .edition-panel{background:linear-gradient(120deg,#e2f2ed,#e9f2f9);border-color:#b9d7d1}
+body.light .edition-panel small{color:#52687a}
+body.light .edition-label{color:#296b58}
+body.light .edition-actions{background:#d5e5e9;border-color:#b6cfd7}
+body.light .edition-btn{color:#365c67}
+body.light .edition-btn.active{background:#276a54;color:#fff}
+body.light .pro-label{background:#e2f3e9;border-color:#b3d9c5;color:#26664f}
+@media(max-width:380px){.edition-panel{flex-wrap:wrap}.edition-actions{width:100%}.edition-btn{flex:1}}
+ 
+/* 4.9: gauge block inventory lives under settings, not the main tool grid */
+.settings-group{margin:3px 0 18px;padding-top:16px;border-top:1px solid var(--line)}
+.settings-gauge-btn{display:flex;align-items:center;gap:12px;width:100%;padding:13px;border:1px solid #3a5566;border-radius:14px;background:#132637;color:inherit;text-align:left;cursor:pointer}
+.settings-gauge-icon{display:grid;place-items:center;flex:none;width:41px;height:41px;background:#23433f;border-radius:12px;color:#b5e8cc}
+.settings-gauge-copy{display:flex;flex:1;flex-direction:column;gap:3px;min-width:0}
+.settings-gauge-copy strong{font-size:14px}
+.settings-gauge-copy small{font-size:11px;color:#aabfcf}
+.settings-gauge-btn>span:last-child{font-size:27px;color:#9eb8c7}
+body.light .settings-gauge-btn{background:#f1f8f8;border-color:#cadfe2}
+body.light .settings-gauge-icon{background:#dceee6;color:#25654d}
+body.light .settings-gauge-copy small{color:#526d7c}
+
+.iso-header{display:flex;gap:14px;align-items:center;margin-bottom:12px}
+.iso-header h2{margin:0 0 7px}
+.iso-seal{flex:none;width:69px;height:69px;border:1px solid #609789;border-radius:15px;background:linear-gradient(145deg,#244b48,#173035);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#c6f5e3;font-size:12px;font-weight:800;letter-spacing:1px;line-height:1.05}
+.iso-seal b{font-size:26px;letter-spacing:-1px}
+.iso-disclaimer{padding:12px 14px;border:1px solid #977d4b;border-radius:12px;background:#302b21;color:#eed6a9;font-size:12px;line-height:1.6;margin:12px 0}
+.iso-result-tag{margin-top:17px;font-size:10px;letter-spacing:1.2px;color:#9ccbbb;font-weight:800}
+body.light .iso-seal{background:#e3f2ed;color:#24634e;border-color:#a9d2c2}
+body.light .iso-disclaimer{background:#fff4e0;color:#73501c;border-color:#d9bc83}
+body.light .iso-result-tag{color:#356d58}
+/* 5.3 — clean landing screen; only the chosen tool is visible */
+section.hidden{display:none!important}
+#toolBar.hidden,#currentTool.hidden,#utilityStatus.hidden{display:none!important}
+#homeTitle{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#a2c5c0;margin:20px 0 12px;font-weight:800}
+.dashboard{gap:12px;margin-bottom:30px}
+.dashbtn{min-height:138px;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;padding:18px;border-radius:19px}
+.dashbtn .glyph{margin-bottom:17px}
+.dashbtn strong{font-size:15px;line-height:1.2}
+.dashbtn small{margin-top:6px;font-size:11px;line-height:1.4}
+#workshopHero{border-radius:20px;padding:17px 18px;margin-bottom:19px}
+#workshopHero strong{letter-spacing:1.5px;font-size:11px}
+#workshopHero small{font-size:12px;line-height:1.45}
+#editionPanel{margin-bottom:19px}
+#toolBar{margin:0 0 17px}
+#currentTool{margin:4px 0 18px}
+body.light #homeTitle{color:#47786a}
+@media(max-width:370px){.dashbtn{padding:13px;min-height:132px}.dashbtn strong{font-size:13px}.dashbtn small{font-size:10px}}
+/* Home screen must never display tool-only controls, even if another CSS rule overrides hidden */
+body.home-view #toolBar,body.home-view #currentTool,body.home-view #utilityStatus{display:none!important}
+body:not(.home-view) #toolBar{display:flex}
+body:not(.home-view) #toolBar.hidden{display:none!important}
+
+/* 5.4: responsive precision tools */
+#chainRows{min-height:140px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;line-height:1.7}
+#mpList .metric{overflow-wrap:anywhere}
+#runout .result,#shrink .result,#measure .result{margin-top:14px}
+@media(max-width:420px){#shrink .row,#measure .row{gap:9px}}
+/* 5.5 — minimalist header with settings gear only */
+header{position:relative;padding-right:64px}
+header #settingsGear{position:absolute;right:2px;top:34px;width:44px;height:44px;border-radius:50%;background:transparent;border:1px solid var(--line);color:var(--green);box-shadow:none}
+header #settingsGear svg{width:23px;height:23px}
+body.light header #settingsGear{background:transparent;color:#315e53;border-color:#b7cfc8}
+
+/* 5.6 — high-contrast digital instrument readouts */
+.result{position:relative;overflow:hidden;padding:19px 17px 18px;border-radius:16px;background:linear-gradient(145deg,#07191e,#102d31 68%,#0b2027);border:1px solid #366e67;box-shadow:inset 0 1px 0 #537b70aa,0 9px 22px #0003}
+.result:before{content:"";position:absolute;inset:0 0 auto;height:2px;background:linear-gradient(90deg,transparent,#9df9d0 35%,#6cbaaf 70%,transparent);opacity:.65}
+.result small{font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:700;color:#9ebdb8;line-height:1.5}
+.result .big{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:clamp(26px,7vw,41px);font-weight:750;letter-spacing:-.055em;line-height:1.26;color:#b5ffdb;text-shadow:0 0 19px #48e5a033;font-variant-numeric:tabular-nums;overflow-wrap:anywhere;margin-top:7px}
+.metric{background:linear-gradient(155deg,#132a32,#10212a);border:1px solid #31535b;border-radius:13px;padding:13px}
+.metric strong{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-variant-numeric:tabular-nums;font-size:clamp(15px,4.5vw,22px);overflow-wrap:anywhere;color:#e1fff1}
+body.light .result{background:linear-gradient(145deg,#edf7f5,#e4f1ee);border-color:#a3c9bf;box-shadow:inset 0 1px 0 white,0 6px 18px #1d5a4820}
+body.light .result .big{color:#12634a;text-shadow:none}
+body.light .metric{background:#f2f8f8;border-color:#c8dede}
+body.light .metric strong{color:#193e39}
+
+/* 5.8 — premium optical metrology display */
+.result,.metric{position:relative;isolation:isolate;background:linear-gradient(155deg,#041319 0%,#092229 55%,#06171e 100%)!important;border:1px solid #376c68!important;border-radius:17px!important;box-shadow:0 12px 26px #0006,inset 0 1px 0 #8dddc744,inset 0 -2px 0 #0006!important;overflow:hidden}
+.result{padding:20px 17px 21px!important}
+.result:before,.metric:before{content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;background:repeating-linear-gradient(to bottom,transparent 0,transparent 3px,#ffffff06 4px,#ffffff06 5px);opacity:.45}
+.result:after{content:"●  MEASUREMENT  /  LIVE";display:block;position:relative;margin-top:15px;padding-top:11px;border-top:1px solid #39706a55;color:#80bcb0;font:700 9px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:1.7px}
+.result small,.metric small{color:#a3d4ca!important;font-size:10px!important;letter-spacing:1.4px!important;text-transform:uppercase;font-weight:700}
+.result .big,.metric strong{font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace!important;font-variant-numeric:tabular-nums slashed-zero!important;font-feature-settings:"tnum" 1,"zero" 1;letter-spacing:-1.25px;text-shadow:0 0 19px #79ffc02b,0 1px 0 #b2ffe544;color:#bbffe0!important;overflow-wrap:anywhere}
+.result .big{font-size:clamp(31px,8.5vw,54px)!important;line-height:1.17!important;margin:10px 0 5px}
+.metric{padding:16px!important}
+.metric strong{font-size:clamp(21px,6vw,33px)!important;line-height:1.2!important}
+.result .big::selection,.metric strong::selection{background:#4caa90;color:#041419}
+.inch-entry{display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:4px 12px;margin:6px 0 2px;border-radius:9px;border:1px solid #64a994;background:#173e3a;color:#b9ffe0;font-size:11px;font-weight:850;letter-spacing:.7px;cursor:pointer}
+.inch-entry[hidden]{display:none!important}
+body.light .result,body.light .metric{background:linear-gradient(155deg,#061a1d,#12383b)!important;color:#e8fff3!important}
+@media(prefers-reduced-motion:no-preference){.result .big,.metric strong{transition:color .2s ease}}
+
+.spc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}.spc-grid .metric{min-width:0}.spc-grid strong{overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+
+/* 5.9: Accessible contextual information for measurement statistics */
+.metric{position:relative}.spc-info{display:inline-flex;align-items:center;justify-content:center;width:25px;height:25px;margin-left:7px;border-radius:50%;border:1px solid #82cbb6;background:#173b3c;color:#b9ffe0;font:700 14px/1 system-ui;cursor:pointer;vertical-align:middle;touch-action:manipulation}.spc-info:focus-visible{outline:3px solid #c2ffdb;outline-offset:2px}
+.spc-help-overlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:18px;background:rgba(0,12,17,.78)}.spc-help-card{width:min(100%,480px);max-height:85vh;overflow:auto;background:#102a32;color:#e9fff4;border:1px solid #6db99f;border-radius:19px;padding:23px;box-shadow:0 18px 60px #0009}.spc-help-card h3{margin:0 0 10px;color:#b5ffdb;font-size:23px}.spc-help-card p{line-height:1.55;font-size:14px}.spc-help-card .spc-formula{font-family:ui-monospace,monospace;background:#091e26;border-radius:9px;padding:12px;overflow-wrap:anywhere}.spc-help-close{float:right;border:1px solid #729e92;background:#183a3d;color:white;border-radius:9px;padding:8px 12px;cursor:pointer}
+body.light .spc-info{background:#e0f3ec;color:#17614b;border-color:#397e67}
+
+/* 6.0 — Precision instrument design system */
+:root{--bg:#071016;--panel:#101e27;--line:#2a4550;--muted:#9cb4bc;--green:#b4ffdb;--blue:#9cd9e5}
+body{background:radial-gradient(ellipse 95% 310px at 50% -100px,#1a3b43 0%,transparent 82%),#071016;color:#e9f5f4}
+header{padding-top:30px}header h1{font-size:clamp(29px,7vw,40px);letter-spacing:-1.5px}
+.eyebrow,.section-kicker,.sectiontitle{letter-spacing:2px;font-size:10px;color:#86cdb5;font-weight:800}
+.panel{background:linear-gradient(160deg,#152630,#0d1a23);border:1px solid #29434c;border-radius:22px;box-shadow:0 14px 40px #0002}
+.dashboard{gap:12px}.dashbtn{position:relative;overflow:hidden;border:1px solid #2e4b53;border-radius:20px;min-height:122px;padding:17px;background:linear-gradient(150deg,#192d35,#0d1c26);box-shadow:inset 0 1px 0 #ffffff0c,0 8px 24px #0002;transition:transform .14s,border-color .14s}
+.dashbtn:active{transform:scale(.975);border-color:#9cefc6}.dashbtn strong{font-size:14px;letter-spacing:-.2px}.dashbtn small{color:#a4c0c5}.dashbtn .glyph{color:#a6f4d2}
+.result,.metric{background:linear-gradient(150deg,#071d21,#0c2a2c)!important;border:1px solid #2d6358!important;border-radius:17px!important;box-shadow:inset 0 1px 0 #ffffff0c,0 8px 24px #0003}
+.result{position:relative;overflow:hidden;padding:19px 17px}.result:before{content:'MEASUREMENT  •  PASSBIT PRO';display:block;font:700 9px/1.4 ui-monospace,monospace;letter-spacing:1.7px;color:#7eae9e;margin-bottom:11px}
+.result .big,.metric strong{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;font-variant-numeric:tabular-nums slashed-zero;font-weight:700;letter-spacing:-1.3px;color:#b7ffdb!important;text-shadow:0 0 18px #7cf0ad25;overflow-wrap:anywhere}
+.result .big{font-size:clamp(32px,8vw,52px);line-height:1.18}.metric strong{font-size:clamp(22px,5vw,30px)}
+input,select,textarea{border-radius:13px;border-color:#395663;background:#091821;min-height:51px;font-variant-numeric:tabular-nums}
+input:focus-visible,select:focus-visible,button:focus-visible{outline:2px solid #a3f4cc;outline-offset:2px}
+.btn{border-radius:12px}.btn.primary{background:#b4ffdb;color:#0a2922}
+.tool-help{margin-left:10px;vertical-align:middle;transform:translateY(-1px);width:27px;height:27px;flex-shrink:0}
+.spc-help-card{border-radius:24px;background:linear-gradient(150deg,#19313a,#0b2029);border-color:#518b7c;box-shadow:0 28px 90px #000b}
+.spc-help-card h3{line-height:1.25;padding-right:55px}.spc-formula{font-size:13px!important;line-height:1.6}
+body.light .panel{background:#f8fcfc}body.light .dashbtn{background:linear-gradient(155deg,#fff,#eaf5f3);border-color:#c8d9d8;color:#17313a}body.light .dashbtn small{color:#516c73}
+@media(max-width:360px){.dashboard{gap:8px}.dashbtn{padding:12px;min-height:113px}.dashbtn strong{font-size:13px}}
+@media(prefers-reduced-motion:reduce){.dashbtn{transition:none}}
+
+/* 6.1: precision-grade offline statistical control charts */
+.spc-charts{display:grid;gap:14px;margin-top:16px}.spc-chart-heading{font-size:10px;letter-spacing:.19em;font-weight:800;color:#8ad4b9}
+.spc-chart-card{background:linear-gradient(155deg,#071a21,#102b31);border:1px solid #315b59;border-radius:18px;padding:14px 10px 8px;box-shadow:inset 0 1px 0 #ffffff0a}
+.spc-chart-card h3{font-size:14px;color:#c4fbe5;margin:0 8px 10px}.spc-chart-card svg{display:block;width:100%;height:auto;overflow:visible}
+body.light .spc-chart-card{background:#0a2028}body.light .spc-chart-heading{color:#28775b}
+
+/* 6.2 field precision suite */
+.pb6-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.pb6-card{border:1px solid #35565c;border-radius:15px;padding:13px;background:#112731}.pb6-card h3{margin:0 0 8px;color:#b5ffdb;font-size:14px}.pb6-card p{font-size:12px;line-height:1.55;color:#bed0d4}.pb6-card label{display:block;margin:8px 0 4px}.pb6-card input,.pb6-card select,.pb6-card textarea{width:100%;max-width:100%;box-sizing:border-box}.pb6-card.wide{grid-column:1/-1}.pb6-result{font:600 clamp(21px,5vw,32px)/1.25 ui-monospace,SFMono-Regular,Menlo,monospace;color:#baffda;background:#071c21;border:1px solid #356f62;border-radius:12px;padding:13px;margin:10px 0;overflow-wrap:anywhere}.pb6-info{font-size:12px;line-height:1.65;color:#b8cdd2}.pb6-info summary{cursor:pointer;color:#b8f8d9;font-weight:700;padding:7px 0}.pb6-card button{margin-top:8px}.pb6-card textarea{min-height:70px}.pb6-status{color:#9edebf;font-size:12px}.pb6-tbl{width:100%;font-size:12px;border-collapse:collapse}.pb6-tbl td,.pb6-tbl th{padding:7px;border-bottom:1px solid #34545b;text-align:left}.pb6-tag{display:inline-block;color:#a8dfc5;font-size:10px;letter-spacing:.1em;text-transform:uppercase}.pb6-choice{display:flex;gap:7px;flex-wrap:wrap}.pb6-choice button{font-size:12px}.pb6-check{display:flex;gap:8px;align-items:center;padding:7px}.pb6-check input{width:auto!important}.pb6-warn{color:#e8c68f!important}.pb6-card .btn{width:auto}.pb6-pills{display:flex;gap:6px;flex-wrap:wrap}.pb6-pills span{border:1px solid #40605c;border-radius:20px;padding:5px 8px;font-size:11px;color:#c7e9dd}
+@media(max-width:520px){.pb6-grid{grid-template-columns:1fr}.pb6-card.wide{grid-column:auto}}body.light .pb6-card{background:#f4faf9;border-color:#c4d9d5}body.light .pb6-card h3,body.light .pb6-info summary{color:#24674e}body.light .pb6-card p,body.light .pb6-info{color:#38535d}
+
+/* 6.3 personal workspace */
+.pb63-settings{display:grid;gap:9px;margin:18px 0}.pb63-settings .section-kicker{margin-top:14px}.pb63-settings .settings-gauge-btn{width:100%;margin:0}.pb63-setting-symbol{font:700 24px/1 ui-monospace,monospace;color:#b5ffdb;width:41px;height:41px;display:grid;place-items:center;background:#23433f;border-radius:12px;flex:none}.pb63-order-controls{display:none;gap:5px;position:absolute;right:7px;top:7px;z-index:2}.pb63-ordering .pb63-order-controls{display:flex}.pb63-ordering .dashbtn{padding-right:65px;min-height:145px}.pb63-order-controls button{background:#285047;color:#d9ffeb;border:1px solid #7db9a5;border-radius:9px;min-width:27px;min-height:35px;font-size:17px;cursor:pointer}.pb63-order-controls button:disabled{opacity:.25}.pb63-order-banner{display:none;padding:12px 14px;background:#1b3b38;border:1px solid #528a78;border-radius:14px;margin-bottom:12px;font-size:13px}.pb63-ordering .pb63-order-banner{display:flex;align-items:center;justify-content:space-between;gap:10px}.pb63-order-banner button{border:1px solid #8de4be;background:#245f4b;color:white;padding:9px 13px;border-radius:9px}.pb63-project-card{border:1px solid #35565c;border-radius:12px;padding:12px;margin:9px 0;background:#10252b}.pb63-project-card strong{display:block;margin-bottom:5px}.pb63-project-card button{margin-top:8px;border:1px solid #639e8a;border-radius:9px;background:#1d423e;color:#d9ffed;padding:8px 11px}.pb63-project-card small{color:#a9c9c7}.pb63-settings .fine{margin:0 0 8px}.pb63-settings select{width:100%}body.light .pb63-project-card{background:#f0f8f5;border-color:#c1d7d0}body.light .pb63-setting-symbol{background:#dceee6;color:#28654e}
+
+/* 6.4: accessible menu ordering; controls live in Settings, never nested in tool buttons */
+.pb64-order-list{display:grid;gap:7px;margin:4px 0 14px}.pb64-order-list.hidden{display:none}
+.pb64-order-row{display:flex;align-items:center;gap:8px;background:#122b31;border:1px solid #3a6161;border-radius:11px;padding:8px 10px;min-height:44px}
+.pb64-order-row span{flex:1;min-width:0;font-size:13px;font-weight:650}
+.pb64-order-row button{min-width:42px;min-height:42px;border:1px solid #75b6a3;border-radius:9px;background:#214940;color:#e2fff0;font-size:21px;touch-action:manipulation}
+.pb64-order-row button:disabled{opacity:.25}
+body.light .pb64-order-row{background:#eef7f5;border-color:#bad6cd}body.light .pb64-order-row button{background:#d7ede4;color:#245b48}
+.pb64-info-button{margin-left:7px;border:1px solid #69b99f;border-radius:50%;width:29px;height:29px;min-width:29px;background:#173d3b;color:#baffdf;font-weight:800;font-size:15px;vertical-align:middle;cursor:pointer}
+.pb64-info-overlay{position:fixed;inset:0;background:#020b10c9;z-index:99999;display:flex;align-items:center;justify-content:center;padding:18px}
+.pb64-info-overlay.hidden{display:none}.pb64-info-box{width:min(100%,440px);max-height:80vh;overflow:auto;background:#102730;border:1px solid #6cae9b;border-radius:18px;padding:20px;color:#e4f6f1;box-shadow:0 18px 65px #0009}
+.pb64-info-box h3{margin:0 0 12px;color:#baffdf}.pb64-info-box p{line-height:1.6;font-size:14px}.pb64-info-box button{margin-top:10px;min-height:44px;padding:8px 18px;border:1px solid #6cae9b;border-radius:10px;background:#245f4e;color:white}
+
+/* PassBit Pro 1.0: dedicated instruments and quiet presentation */
+.pb10-diagram{background:#0b2229;border:1px solid #365a5b;border-radius:15px;padding:12px;margin:14px 0;text-align:center}.pb10-diagram svg{width:100%;max-height:150px}.pb10-diagram small{display:block;color:#a6c4bc;font-size:11px}.pb10-output{border:1px solid #365454;border-radius:14px;padding:15px;margin:12px 0;background:#10282d;color:#c9f9e2;font:600 14px/1.6 ui-monospace,Menlo,monospace;white-space:pre-wrap;overflow-wrap:anywhere}.pb10-reference{display:grid;gap:9px;margin:14px 0}.pb10-reference article{border:1px solid var(--line);border-radius:12px;padding:12px}.pb10-reference article strong{display:block;color:var(--green);margin-bottom:4px}.pb10-reference article small{line-height:1.5}.pb10-bar{display:flex;align-items:center;gap:8px;font-size:12px;margin:7px 0}.pb10-bar b{width:44px}.pb10-bar span{height:8px;background:#9cf4c4;border-radius:8px;display:block}.pb10-bar em{font-style:normal;color:var(--muted)}body.light .pb10-output{background:#eef8f5;color:#215b4a}body.light .pb10-diagram{background:#16332f}#analysis10 textarea,#workshop10 input,#reports10 textarea{width:100%}@media print{body>*:not(main){display:none!important}header,.dashboard,.tabs,#toolBar,#settingsPanel,.edition-panel{display:none!important}#reports10{display:block!important}#reports10 .panel:not(:first-child){display:none!important}}
+
+/* Clean homepage cards: icon and name only */
+.dashboard .dashbtn{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:12px;min-height:104px;padding:17px}
+.dashboard .dashbtn .glyph{margin:0;line-height:1}
+.dashboard .dashbtn strong{margin:0;font-size:14px;line-height:1.3;letter-spacing:-.01em}
+.dashboard .dashbtn small{display:none!important}
+
+/* css/styles-02.css */
+
+/* PassBit 6.5: restrained premium dashboard, less visual noise */
+.home-view .dashboard{gap:11px!important}
+.home-view .dashbtn{min-height:94px!important;padding:17px 14px!important;border:1px solid var(--line)!important;border-radius:16px!important;box-shadow:none!important;transform:none!important;transition:border-color .15s ease,background .15s ease!important}
+.home-view .dashbtn:hover{transform:none!important}
+.home-view .dashbtn .glyph{opacity:.8;filter:none!important}
+.home-view .dashbtn strong{font-weight:650;letter-spacing:-.02em}
+.home-view .dashbtn small{font-size:11px;line-height:1.35;opacity:.68}
+.home-view .dashbtn .pro-label{font-size:9px;letter-spacing:.06em;opacity:.58;background:transparent!important;border:1px solid currentColor!important;padding:2px 5px!important}
+.home-view .dashbtn:active{border-color:#7dcfb2!important}
+#cncpro .pb6-grid,#grindpro .pb6-grid{margin-top:16px}
+#pb65grindSpeed{margin:12px 0 3px;width:100%}
+
+/* css/styles-03.css */
+
+/* Precision UI refresh: calm home cards, no ornamental badges */
+.home-view .dashboard{gap:10px!important;margin-bottom:22px!important}
+.home-view .dashbtn{min-height:112px!important;padding:17px 16px!important;background:#11242c!important;border:1px solid #29454c!important;border-radius:15px!important;box-shadow:none!important;display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:flex-start!important;gap:0!important}
+.home-view .dashbtn .glyph{width:35px!important;height:35px!important;min-height:35px!important;margin:0 0 15px!important;background:#1b3439!important;border:0!important;border-radius:10px!important;color:#a8e7cc!important;opacity:1!important}
+.home-view .dashbtn .glyph .pb-icon{width:20px!important;height:20px!important}
+.home-view .dashbtn strong{font-size:14px!important;line-height:1.25!important;font-weight:650!important;color:#e8f7f2!important;letter-spacing:-.01em!important;margin:0!important}
+.home-view .dashbtn small{font-size:10px!important;line-height:1.45!important;color:#93afb3!important;opacity:1!important;margin:5px 0 0!important}
+.home-view .dashbtn .pro-label{display:none!important}
+.home-view .dashbtn:focus-visible{outline:2px solid #a6f2d1!important;outline-offset:3px!important}
+body.light.home-view .dashbtn{background:#f8fbfa!important;border-color:#c9dcd8!important}
+body.light.home-view .dashbtn strong{color:#203a39!important}
+body.light.home-view .dashbtn small{color:#5a7676!important}
+body.light.home-view .dashbtn .glyph{background:#e6f2ee!important;color:#216e53!important}
+.pb6-card{border-radius:16px!important;box-shadow:none!important}
+.pb6-card h3{line-height:1.4!important}
+.pb6-info:not([open]){margin-top:7px}
+.pb6-info summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid #335c59;border-radius:10px;padding:11px 12px!important;font-size:12px;font-weight:650!important}
+.pb6-info summary::-webkit-details-marker{display:none}
+.pb6-info summary::after{content:'+';font-size:19px;font-weight:400;color:#a9e8cf}
+.pb6-info[open] summary::after{content:'−'}
+.pb6-info[open] summary{margin-bottom:10px}
+.pb6-info summary:focus-visible{outline:2px solid #b9ffe0;outline-offset:2px}
+.pb6-card .pb6-result{box-shadow:none!important}
+@media(max-width:390px){.home-view .dashbtn{min-height:106px!important;padding:14px 12px!important}.home-view .dashbtn strong{font-size:13px!important}}
+
+/* css/styles-04.css */
+
+/* PassBit Pro 1.0 | Precision UI consistency pass */
+:root{--pp-mint:#b8f4d7;--pp-muted:#9cbab8;--pp-edge:#294a4d}
+body{background:#08171d!important;-webkit-font-smoothing:antialiased}
+.panel{border:1px solid #2b4549!important;border-radius:20px!important;box-shadow:none!important}
+.dashboard{gap:11px!important}
+.dashboard .dashbtn{background:#11282f!important;border:1px solid #2d494c!important;border-radius:17px!important;box-shadow:none!important;min-height:98px!important;gap:7px!important;transition:background .18s,border-color .18s}
+.dashboard .dashbtn:hover{border-color:#538176!important}
+.dashboard .dashbtn:active{background:#1b3b3b!important}
+.dashboard .dashbtn .glyph{opacity:.85;filter:none!important}
+.dashboard .dashbtn strong{font-size:14px!important;letter-spacing:-.15px!important;line-height:1.2!important}
+.dashboard .dashbtn small,.dashboard .dashbtn .pro-label{display:none!important}
+.pb6-card{background:#11262d!important;border:1px solid #2b484b!important;border-radius:17px!important;box-shadow:none!important;padding:17px!important}
+.pb6-card h3{font-size:16px!important;letter-spacing:-.25px!important}
+.pb6-card label{line-height:1.5}
+input,textarea,select{border-radius:11px!important;min-height:44px;accent-color:#a5f2cf}
+input:focus-visible,textarea:focus-visible,select:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid #b8f4d7!important;outline-offset:2px}
+.pb6-result,.result,.pb10-output{border-radius:15px!important;box-shadow:none!important;font-variant-numeric:tabular-nums}
+.pb6-info,.pp-help{display:block;background:#0c252a!important;border:1px solid #31534f!important;border-radius:12px!important;margin:12px 0!important;padding:0 13px!important;color:#b8d3cc!important}
+.pb6-info summary,.pp-help summary{display:block;cursor:pointer;position:relative;list-style:none;min-height:44px;padding:13px 25px 13px 0!important;color:#b9f0d5!important;font-size:13px;font-weight:650}
+.pb6-info summary::-webkit-details-marker,.pp-help summary::-webkit-details-marker{display:none}
+.pb6-info summary:after,.pp-help summary:after{content:'+';position:absolute;right:0;top:9px;font-size:19px;font-weight:400}
+.pb6-info[open] summary:after,.pp-help[open] summary:after{content:'−'}
+.pb6-info p,.pp-help p{margin:0 0 12px;line-height:1.55}
+.pb6-warn{color:#b8c8c3!important;font-size:12px!important}
+@media(max-width:540px){.pb6-card{padding:14px!important}.dashboard .dashbtn{min-height:94px!important}}
+
+/* css/styles-05.css */
+.sinu-results{display:grid;gap:8px;margin-top:12px}.sinu-entry{border:1px solid #2c4b4b;background:#0e252b;border-radius:12px;padding:12px 14px}.sinu-entry strong{color:#b9f6d8;font-size:14px}.sinu-entry small{display:block;color:#a6c4bf;line-height:1.5;margin-top:5px}.sinu-entry em{font-style:normal;color:#8fb2a9;font-size:10px;display:block;margin-bottom:5px;letter-spacing:.07em;text-transform:uppercase}.sinu-illustration{width:100%;max-width:380px;display:block;margin:10px auto}#sinuSearch{width:100%}
+/* css/styles-06.css */
+.sinu-form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:16px 0}.sinu-form-grid label{display:flex;flex-direction:column;gap:6px;color:#a9c9bf;font-size:12px}.sinu-form-grid input,.sinu-form-grid select,.sinu-form-grid textarea{width:100%;box-sizing:border-box;background:#0b2228;color:#e8f8f0;border:1px solid #33524e;padding:10px 12px}.sinu-form-grid .sinu-full{grid-column:1/-1}.sinu-plan{border:1px solid #315c51;border-radius:14px;padding:15px;margin:16px 0;background:#0a2227}.sinu-plan h4{color:#b8f6d8;margin:12px 0 8px}.sinu-plan ol{padding-left:21px;color:#d0e3dc;line-height:1.6}.sinu-plan li{margin:6px 0}.sinu-plan .sinu-caution{border-left:3px solid #d7b779;padding:9px 12px;background:#28291f;color:#eee0b8}.sinu-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.sinu-actions button{flex:1;min-width:140px}.sinu-actions button:disabled{opacity:.4}.sinu-saved-row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid #2a4949}.sinu-saved-row button{min-width:75px}.sinu-assistant>button{margin:4px 0}@media(max-width:540px){.sinu-form-grid{grid-template-columns:1fr}.sinu-actions button{width:100%}}
+/* css/styles-07.css */
+#abbrobot a{color:#b5ffdb}#abbrobot .sinu-results{max-height:540px;overflow:auto}#abbrobot .pb6-info{margin:8px 0!important}
+/* css/styles-08.css */
+
+/* Unified PassBit Pro visual system — final override */
+:root{--pp-bg:#081820;--pp-panel:#10262e;--pp-panel-alt:#122b32;--pp-line:#2d4b50;--pp-text:#e8f5f1;--pp-muted:#a8c4bf;--pp-accent:#b6f6d8}
+html{overflow-x:hidden}body{overflow-x:hidden;background:var(--pp-bg)!important;color:var(--pp-text)}
+.panel{background:var(--pp-panel)!important;border:1px solid var(--pp-line)!important;border-radius:18px!important;padding:clamp(13px,3vw,19px)!important;box-shadow:none!important;min-width:0}
+.pb6-grid{gap:13px!important;min-width:0}.pb6-card{background:var(--pp-panel-alt)!important;border:1px solid var(--pp-line)!important;border-radius:16px!important;padding:clamp(13px,3vw,18px)!important;min-width:0;overflow-wrap:anywhere;box-shadow:none!important}
+.pb6-card h3{color:var(--pp-accent)!important;font-size:clamp(15px,3.5vw,17px)!important;font-weight:700!important;line-height:1.35!important;letter-spacing:-.02em!important;margin:0 0 12px!important}
+.pb6-card p,.pb6-card .fine{line-height:1.58!important}.pb6-card p{margin:8px 0 12px}.pb6-card p:last-child{margin-bottom:0}
+/* Details is the one and only container: no second border on summary */
+details.pb6-info,details.pp-help{display:block!important;box-sizing:border-box!important;margin:11px 0!important;padding:0 14px!important;background:#0b252c!important;border:1px solid #31534f!important;border-radius:12px!important;box-shadow:none!important;overflow:hidden!important}
+details.pb6-info summary,details.pp-help summary{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;box-sizing:border-box!important;width:100%!important;min-height:48px!important;margin:0!important;padding:11px 0!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;list-style:none!important;font-size:13px!important;line-height:1.45!important;color:var(--pp-accent)!important;font-weight:650!important;position:relative!important;cursor:pointer!important}
+details.pb6-info summary::-webkit-details-marker,details.pp-help summary::-webkit-details-marker{display:none!important}
+details.pb6-info summary::after,details.pp-help summary::after{content:'+'!important;display:block!important;position:static!important;flex:0 0 auto!important;line-height:1!important;font-size:21px!important;font-weight:400!important;color:var(--pp-accent)!important}
+details.pb6-info[open] summary::after,details.pp-help[open] summary::after{content:'−'!important}
+details.pb6-info[open] summary,details.pp-help[open] summary{border-bottom:1px solid #2b4848!important;margin-bottom:10px!important}
+details.pb6-info p,details.pp-help p{padding:0!important;margin:0 0 12px!important;font-size:12px!important;line-height:1.6!important}
+.dashboard .dashbtn{border-radius:16px!important;border:1px solid var(--pp-line)!important;background:#112a31!important;box-shadow:none!important;min-width:0!important;overflow:hidden!important}
+.dashboard .dashbtn strong{overflow-wrap:anywhere!important}.dashboard .dashbtn small{display:none!important}
+input,textarea,select{box-sizing:border-box!important;max-width:100%!important;min-width:0!important;border-radius:11px!important}
+.pb6-card input,.pb6-card textarea,.pb6-card select{font-size:16px!important;line-height:1.35!important}
+.pb6-result,.pb10-output{overflow-wrap:anywhere!important;max-width:100%!important;box-sizing:border-box!important;font-variant-numeric:tabular-nums!important}
+button{touch-action:manipulation}a,button,summary{ -webkit-tap-highlight-color:transparent }
+@media(max-width:540px){.pb6-grid{grid-template-columns:minmax(0,1fr)!important}.pb6-card.wide{grid-column:1!important}.panel{padding:13px!important}.pb6-card{padding:14px!important}.sinu-form-grid{grid-template-columns:minmax(0,1fr)!important}}
+body.light details.pb6-info,body.light details.pp-help{background:#edf7f4!important;border-color:#b9d4cb!important}body.light details.pb6-info summary,body.light details.pp-help summary{color:#215b4a!important}body.light .pb6-card{background:#f5faf8!important;border-color:#c5d8d3!important}body.light .panel{background:#fff!important;border-color:#c5d8d3!important}
+
+/* css/styles-09.css */
+
+/* Final mobile consistency pass: eliminate inherited double borders on native accordions */
+.pb6-card details.pb6-info,.pb6-card details.pb10-help-detail,.pb6-card details.pp-help,
+.panel details.pb6-info,.panel details.pb10-help-detail,.panel details.pp-help{display:block!important;box-sizing:border-box!important;width:100%!important;max-width:100%!important;min-width:0!important;overflow:hidden!important;margin:12px 0!important;padding:0 13px!important;border:1px solid #345654!important;border-radius:13px!important;background:#0c252b!important;box-shadow:none!important;outline:0!important}
+.pb6-card details.pb6-info summary,.pb6-card details.pb10-help-detail summary,.pb6-card details.pp-help summary,
+.panel details.pb6-info summary,.panel details.pb10-help-detail summary,.panel details.pp-help summary{display:flex!important;align-items:center!important;box-sizing:border-box!important;width:100%!important;min-height:48px!important;margin:0!important;padding:11px 27px 11px 0!important;border:0!important;border-radius:0!important;box-shadow:none!important;background:transparent!important;line-height:1.35!important;white-space:normal!important;overflow-wrap:anywhere!important;list-style:none!important;cursor:pointer}
+.pb6-card details.pb6-info summary::before,.panel details.pb6-info summary::before{display:none!important;content:none!important}
+.pb6-card details.pb6-info summary::after,.panel details.pb6-info summary::after{right:0!important;top:50%!important;transform:translateY(-50%)!important}
+.pb6-card details.pb6-info > p,.panel details.pb6-info > p{padding:0 0 12px!important;margin:0!important}
+.pb6-card,.panel,.sinu-entry{min-width:0;overflow-wrap:break-word}
+.pb6-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.pb6-grid .wide{grid-column:1/-1}
+.sinu-form-grid>*{min-width:0}
+input,select,textarea{max-width:100%;box-sizing:border-box;font-size:16px!important}
+button{touch-action:manipulation}
+@media(max-width:650px){.pb6-grid{grid-template-columns:minmax(0,1fr)!important}.pb6-grid .wide{grid-column:auto}.pb6-card,.panel{max-width:100%;box-sizing:border-box}.sinu-form-grid{grid-template-columns:minmax(0,1fr)!important}.sinu-form-grid .sinu-full{grid-column:auto}.dashboard{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+
+/* css/styles-11.css */
+
+/* 6.7: Long-press sorting on home dashboard */
+.dashboard .dashbtn.pb67-dragging{opacity:.3;border:2px dashed #a5f5ce!important;transform:none!important}
+.pb67-drag-ghost{position:fixed;z-index:20000;pointer-events:none;box-sizing:border-box;margin:0!important;opacity:.97;transform:scale(1.035);box-shadow:0 22px 60px #000b!important;border:2px solid #b4ffdb!important;touch-action:none}
+body.pb67-sorting{user-select:none;-webkit-user-select:none}
+.pb67-sort-hint{color:var(--muted);font-size:11px;margin:-5px 0 15px;text-align:center;letter-spacing:.015em}
+@media(prefers-reduced-motion:reduce){.pb67-drag-ghost{transition:none!important}}
+
+/* Technical knowledge banks */
+#pneumatics .pb6-grid,#drawings .pb6-grid,#electrical .pb6-grid{gap:14px}
+.tech-diagram{background:#0a2026;border:1px solid #31524e;border-radius:14px;margin:14px 0;padding:12px;overflow:hidden}
+.tech-diagram svg{display:block;width:100%;max-width:480px;height:auto;margin:auto}
+.tech-table{width:100%;border-collapse:collapse;font-size:13px;line-height:1.5;color:#c5dfd5}
+.tech-table th,.tech-table td{text-align:left;padding:8px 7px;border-bottom:1px solid #31504d;vertical-align:top}
+.tech-table th{color:#b7f5d6;font-weight:700}.tech-steps{padding-left:23px;color:#c8ddd6;line-height:1.65}.tech-steps li{margin:8px 0}
+.tech-choices{display:flex;gap:9px;flex-wrap:wrap;margin:12px 0}.tech-choices button{flex:1;min-width:150px;min-height:44px}
+#pneumatics select,#electrical select,#drawings select{width:100%;min-height:44px;margin:8px 0 12px}
+#pneumatics .pb6-info,#drawings .pb6-info,#electrical .pb6-info{border:1px solid #31534f!important;border-radius:12px!important;box-shadow:none!important}
+#pneumatics .pb6-info summary,#drawings .pb6-info summary,#electrical .pb6-info summary{border:0!important;box-shadow:none!important}
+@media(max-width:540px){.tech-diagram{padding:7px}.tech-choices{flex-direction:column}.tech-choices button{width:100%}}
