@@ -1,0 +1,50 @@
+/* PassBit Pro · Premium Motion
+   Subtle, GPU-friendly UI effects; no continuous animations. */
+:root{--lux-glow:rgba(159,245,207,.14)}
+body{background-image:radial-gradient(ellipse 100% 420px at 50% -190px,rgba(47,109,113,.32),transparent 83%)!important;background-color:#081820!important}
+header h1{background:linear-gradient(115deg,#f6fffc 15%,#b6e9d3 62%,#e5fff5 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.dashboard .dashbtn{
+ position:relative;isolation:isolate;
+ background:linear-gradient(145deg,#153038,#0d232b)!important;
+ border-color:#345653!important;
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.055),0 4px 18px rgba(0,0,0,.10)!important;
+ transition:transform .22s cubic-bezier(.2,.75,.25,1),border-color .22s,box-shadow .22s,background-color .22s!important;
+ will-change:auto;
+}
+.dashboard .dashbtn::before{
+ content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;border-radius:inherit;
+ background:linear-gradient(135deg,rgba(181,255,219,.085),transparent 52%);
+ opacity:.55;transition:opacity .22s;
+}
+.dashboard .dashbtn .glyph{transition:transform .24s cubic-bezier(.2,.75,.25,1),color .24s;color:#b5f4d6}
+.dashboard .dashbtn:active:not(.pb67-dragging){transform:scale(.975)!important}
+.dashboard .dashbtn:focus-visible{outline:2px solid #b7f9d7!important;outline-offset:3px!important}
+.panel,.pb6-card{box-shadow:inset 0 1px 0 rgba(255,255,255,.035)!important}
+.result,.pb6-result,.grind-readout{position:relative;box-shadow:inset 0 1px 0 rgba(187,255,218,.075)!important}
+.big,.grind-value{font-variant-numeric:tabular-nums;text-shadow:0 0 22px rgba(155,255,199,.11)}
+button:not(.dashbtn){transition:background-color .16s,border-color .16s,transform .16s,filter .16s}
+button:not(.dashbtn):active{transform:scale(.985)}
+input,select,textarea{transition:border-color .16s,box-shadow .16s}
+input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(145,233,199,.09)!important}
+details summary{transition:color .16s,background-color .16s}
+details[open]>summary{color:#c4ffdf!important}
+nav.tabs button.active{box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 2px 12px rgba(0,0,0,.13)}
+@media(hover:hover) and (pointer:fine){
+ .dashboard .dashbtn:hover:not(.pb67-dragging){transform:translateY(-3px);border-color:#659889!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 11px 25px rgba(0,0,0,.22)!important}
+ .dashboard .dashbtn:hover::before{opacity:1}
+ .dashboard .dashbtn:hover .glyph{transform:translateY(-2px)}
+ button:not(.dashbtn):hover:not(:disabled){filter:brightness(1.08)}
+}
+@keyframes luxEnter{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:no-preference){
+ body.lux-ready .dashboard .dashbtn{animation:luxEnter .42s both;animation-delay:calc(min(var(--lux-order,0),10)*24ms)}
+ body.lux-ready .lux-section-enter>.panel:first-child{animation:luxEnter .28s ease-out both}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+@media(max-width:540px){
+ .dashboard .dashbtn{box-shadow:inset 0 1px 0 rgba(255,255,255,.04)!important}
+ .dashboard .dashbtn:active:not(.pb67-dragging){transform:scale(.985)!important}
+}
+ .pb-category-card.pb67-dragging{opacity:.3!important;border:2px dashed #a5f5ce!important} #pb63reorder,#pb64orderlist,#pb63resetorder,#pb63orderbanner{display:none!important}
