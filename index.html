@@ -865,8 +865,42 @@ header h1{filter:drop-shadow(0 2px 15px #c5d4e01b)}
 @keyframes ti-polish{0%,72%,100%{transform:translateX(-140%)}83%{transform:translateX(140%)}}
 @media(hover:none){#pb-category-grid>.pb-category-card:hover{transform:none!important}#pb-category-grid>.pb-category-card:hover .pb-category-icon{transform:none}}
 @media(prefers-reduced-motion:reduce){.pb-build-version::after{animation:none!important}#pb-category-grid>.pb-category-card,.pb-category-detail:not([hidden]) .pb-category-head,.pb-category-detail:not([hidden]) .pb-blade-tabs,.pb-category-detail:not([hidden]) .pb-category-tool{animation:none!important}#pb-category-grid>.pb-category-card,.pb-category-tool,.pb-category-tool-arrow{transition:none!important}}
+
+/* TITANIUM 3.3 — precision instrument sheets */
+.pb67-sort-hint{display:block!important;position:relative!important;inset:auto!important;float:none!important;clear:both!important;max-width:100%!important;min-height:0!important;box-sizing:border-box!important;margin:18px auto 26px!important;padding:9px 14px!important;width:max-content!important;border:1px solid #485b69!important;border-radius:999px!important;background:linear-gradient(160deg,#2a3642,#151e28)!important;color:#b9c8d5!important;font-size:11px!important;line-height:1.55!important;white-space:normal!important;text-align:center!important;overflow-wrap:break-word!important;box-shadow:inset 0 1px #ffffff1a!important}
+body:not(.home-view) .pb67-sort-hint{display:none!important}
+main>section:not(.hidden){animation:ti-sheet-arrive .42s cubic-bezier(.22,1,.36,1) both}
+main>section:not(.hidden)>.panel{position:relative;isolation:isolate;border-radius:23px!important;border:1px solid #526273!important;background:linear-gradient(156deg,#2b3846 0%,#19232e 32%,#111923 100%)!important;box-shadow:inset 0 1px #ffffff36,0 18px 44px #0006!important}
+main>section:not(.hidden)>.panel::before{content:"";position:absolute;pointer-events:none;top:0;left:25px;right:25px;height:1px;background:linear-gradient(90deg,transparent,#d8e7f0a0 40%,transparent)}
+main>section:not(.hidden)>.panel>.section-kicker{color:#9bb8ca!important;margin-bottom:10px!important}
+main>section:not(.hidden)>.panel>h2{font-size:clamp(27px,3.5vw,37px)!important;letter-spacing:-.045em!important}
+main>section:not(.hidden)>.panel>.note{max-width:72ch!important;color:#b3c0cd!important;line-height:1.65!important;margin:10px 0 24px!important}
+.pb6-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:16px!important;margin:20px 0!important}
+.pb6-card{position:relative!important;min-width:0!important;padding:clamp(19px,2.4vw,27px)!important;border-radius:18px!important;background:linear-gradient(145deg,#283542,#16212c 70%,#121c26)!important;border:1px solid #485b6a!important;box-shadow:inset 0 1px #ffffff24,0 9px 22px #0004!important;transition:border-color .28s,transform .28s!important}
+.pb6-card:hover{border-color:#7a91a2!important}
+.pb6-card h3{color:#e3edf6!important;font-size:17px!important;font-weight:720!important;letter-spacing:-.025em!important;padding-bottom:14px!important;margin-bottom:17px!important;border-bottom:1px solid #465664!important}
+.pb6-card label{display:block!important;margin:13px 0 8px!important;color:#b7c6d4!important;font-size:13px!important;line-height:1.5!important}
+.pb6-card input,.pb6-card select{margin-top:7px!important}
+.pb6-result{background:linear-gradient(135deg,#0a151e,#162632)!important;color:#d8f3ff!important;border:1px solid #567384!important;border-left:3px solid #b3d9ed!important;border-radius:13px!important;padding:18px!important;margin:18px 0 4px!important;box-shadow:inset 0 2px 12px #0005!important;font-family:ui-monospace,SFMono-Regular,Menlo,monospace!important;font-size:clamp(19px,3vw,29px)!important;line-height:1.45!important;font-variant-numeric:tabular-nums!important}
+#grindpro>.panel{margin-bottom:18px!important}
+#grindpro>.panel>.pb6-grid{margin-top:25px!important}
+#grindpro .pb6-card.wide{grid-column:1/-1}
+#pb-grinding-lab{margin-top:22px!important;padding:clamp(20px,3.5vw,34px)!important}
+#pb-grinding-lab .pb-grind-section{display:flex!important;align-items:center!important;gap:15px!important}
+#pb-grinding-lab .pb-grind-section h3{margin:0 0 5px!important;color:#eef5fa!important;font-size:17px!important}
+#pb-grinding-lab .pb-grind-section p{margin:0!important;color:#9eafbf!important;font-size:13px!important;line-height:1.5!important}
+#pb-grinding-lab .pb-grind-step{flex:0 0 44px!important;width:44px!important;height:44px!important;display:grid!important;place-items:center!important;background:linear-gradient(145deg,#536b7c,#243443)!important;border:1px solid #8196a7!important;border-radius:12px!important;color:#fff!important;font:700 14px ui-monospace,monospace!important;box-shadow:inset 0 1px #ffffff50!important}
+#pb-grinding-lab .pb-grind-results{gap:13px!important}
+#pb-grinding-lab .pb-grind-metric{min-width:0!important;border-radius:17px!important;padding:21px!important}
+#pb-grinding-lab .pb-grind-metric small{font-size:11px!important;letter-spacing:.025em!important;line-height:1.5!important}
+#pb-grinding-lab .pb-grind-metric strong{font-family:ui-monospace,SFMono-Regular,Menlo,monospace!important;font-variant-numeric:tabular-nums!important;font-size:clamp(18px,2.2vw,25px)!important;letter-spacing:-.04em!important}
+#grindpro input,#grindpro select{min-height:50px!important}
+#grindpro input:focus-visible,#grindpro select:focus-visible{outline:2px solid #a7d9f0!important;outline-offset:2px!important}
+@keyframes ti-sheet-arrive{from{opacity:.2;transform:translate3d(0,17px,0);filter:blur(3px)}to{opacity:1;transform:translate3d(0,0,0);filter:blur(0)}}
+@media(max-width:700px){.pb6-grid{grid-template-columns:minmax(0,1fr)!important;gap:12px!important}.pb6-card.wide{grid-column:auto!important}main>section:not(.hidden)>.panel{padding:19px!important}#pb-grinding-lab .pb-grind-fields{padding:15px!important}#pb-grinding-lab .pb-grind-metric{padding:17px!important}}
+@media(prefers-reduced-motion:reduce){main>section:not(.hidden){animation:none!important}.pb6-card{transition:none!important}}
 </style></head><body class="home-view"><main>
-<header><div class="eyebrow">PRECISION ENGINEERING</div><h1><span class="brand">Pass<span class="brand-accent">Bit</span> Pro</span></h1><p>by Stefan Pettersson</p><div class="pb-build-version" aria-label="Appversion">VERSION 3.2.0 <span>· 23 OKT 2026</span></div><button aria-label="Inställningar" class="settings-gear" id="settingsGear" title="Inställningar" type="button"><svg aria-hidden="true" class="pb-icon" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="24"><path d="M10.4 2h3.2l.6 2.3a8 8 0 0 1 1.8.8l2.1-1.1 2.2 2.2-1.1 2.1a8 8 0 0 1 .8 1.8l2.3.6v3.2l-2.3.6a8 8 0 0 1-.8 1.8l1.1 2.1-2.2 2.2-2.1-1.1a8 8 0 0 1-1.8.8l-.6 2.3h-3.2l-.6-2.3a8 8 0 0 1-1.8-.8l-2.1 1.1-2.2-2.2 1.1-2.1a8 8 0 0 1-.8-1.8L2 13.6v-3.2l2.3-.6a8 8 0 0 1 .8-1.8L4 5.9l2.2-2.2 2.1 1.1a8 8 0 0 1 1.8-.8z"></path><circle cx="12" cy="12" r="3"></circle></svg></button></header>
+<header><div class="eyebrow">PRECISION ENGINEERING</div><h1><span class="brand">Pass<span class="brand-accent">Bit</span> Pro</span></h1><p>by Stefan Pettersson</p><div class="pb-build-version" aria-label="Appversion">VERSION 3.3.0 <span>· 23 OKT 2026</span></div><button aria-label="Inställningar" class="settings-gear" id="settingsGear" title="Inställningar" type="button"><svg aria-hidden="true" class="pb-icon" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="24"><path d="M10.4 2h3.2l.6 2.3a8 8 0 0 1 1.8.8l2.1-1.1 2.2 2.2-1.1 2.1a8 8 0 0 1 .8 1.8l2.3.6v3.2l-2.3.6a8 8 0 0 1-.8 1.8l1.1 2.1-2.2 2.2-2.1-1.1a8 8 0 0 1-1.8.8l-.6 2.3h-3.2l-.6-2.3a8 8 0 0 1-1.8-.8l-2.1 1.1-2.2-2.2 1.1-2.1a8 8 0 0 1-.8-1.8L2 13.6v-3.2l2.3-.6a8 8 0 0 1 .8-1.8L4 5.9l2.2-2.2 2.1 1.1a8 8 0 0 1 1.8-.8z"></path><circle cx="12" cy="12" r="3"></circle></svg></button></header>
 <section aria-label="Inställningar" class="hidden" id="settingsPanel">
 <div class="panel settings-panel"><div class="settings-head"><h2 data-i18n="settings">Inställningar</h2><button aria-label="Stäng" class="settings-close" id="settingsClose" type="button"><svg aria-hidden="true" class="pb-icon" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="24"><path d="M5 5l14 14M19 5 5 19"></path></svg></button></div>
 <label data-i18n="language" for="languageSelect">Språk</label><select id="languageSelect"><option value="sv">Svenska</option><option value="en">English</option></select>
@@ -1896,7 +1930,7 @@ const KEY='passbit-category-order-v1';
 const cards=()=>[...grid.querySelectorAll('.pb-category-card[data-category]')];
 try{const saved=JSON.parse(localStorage.getItem(KEY)||'[]');if(Array.isArray(saved)){const byId=new Map(cards().map(el=>[el.dataset.category,el]));saved.forEach(id=>{if(byId.has(id)){grid.append(byId.get(id));byId.delete(id)}});byId.forEach(el=>grid.append(el))}}catch{}
 let pending=null,active=null,ghost=null,timer=null,suppress=false;
-const hint=document.createElement('p');hint.className='pb67-sort-hint';hint.textContent='Håll fingret på ett kort för att flytta det';grid.after(hint);
+const hint=document.createElement('p');hint.className='pb67-sort-hint';hint.textContent='Håll och dra för att ändra ordning';grid.after(hint);
 function cancelTimer(){clearTimeout(timer);timer=null}
 function begin(){if(!pending)return;const {el,x,y}=pending,rect=el.getBoundingClientRect();active={el,dx:x-rect.left,dy:y-rect.top};ghost=el.cloneNode(true);ghost.classList.add('pb67-drag-ghost');Object.assign(ghost.style,{width:rect.width+'px',height:rect.height+'px',pointerEvents:'none'});document.body.append(ghost);el.classList.add('pb67-dragging');document.body.classList.add('pb67-sorting');move(x,y);hint.textContent='Dra kortet till önskad plats och släpp'}
 function move(x,y){if(!active)return;ghost.style.left=x-active.dx+'px';ghost.style.top=y-active.dy+'px';const hit=document.elementFromPoint(x,y)?.closest('.pb-category-card[data-category]');if(hit&&hit!==active.el&&grid.contains(hit)){const items=cards(),from=items.indexOf(active.el),to=items.indexOf(hit);grid.insertBefore(active.el,from<to?hit.nextSibling:hit)}}
